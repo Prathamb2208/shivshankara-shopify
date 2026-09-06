@@ -1,0 +1,113 @@
+<footer class="site-footer bg-[#131110] text-[#E8E2D9] pt-16 pb-12 border-t border-neutral-800">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12 pb-16 border-b border-neutral-800/80">
+      
+      <!-- Brand Column -->
+      <div class="lg:col-span-2 flex flex-col justify-between">
+        <div>
+          <span class="font-serif text-2xl tracking-[0.2em] uppercase font-light text-white block mb-3">
+            {{ section.settings.brand_title | default: 'AURELIA' }}
+          </span>
+          <p class="text-xs text-neutral-400 font-light leading-relaxed max-w-sm mb-6">
+            {{ section.settings.brand_bio | default: 'An independent design atelier dedicated to timeless feminine tailoring, mindful European craftsmanship, and sculptural modern silhouettes.' }}
+          </p>
+        </div>
+
+        <div class="flex items-center gap-4 text-xs text-neutral-400">
+          {%- if settings.social_instagram_link != blank -%}
+            <a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener" class="hover:text-white transition-colors" aria-label="Instagram">
+              Instagram
+            </a>
+          {%- endif -%}
+          {%- if settings.social_pinterest_link != blank -%}
+            <a href="{{ settings.social_pinterest_link }}" target="_blank" rel="noopener" class="hover:text-white transition-colors" aria-label="Pinterest">
+              Pinterest
+            </a>
+          {%- endif -%}
+          {%- if settings.social_tiktok_link != blank -%}
+            <a href="{{ settings.social_tiktok_link }}" target="_blank" rel="noopener" class="hover:text-white transition-colors" aria-label="TikTok">
+              TikTok
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Links Column 1: Collections -->
+      <div>
+        <h4 class="text-xs uppercase tracking-[0.2em] font-medium text-white mb-4">The Collections</h4>
+        <ul class="flex flex-col gap-2.5 text-xs text-neutral-400 font-light">
+          <li><a href="/collections/new-in" class="hover:text-white transition-colors">New In: Edition 01</a></li>
+          <li><a href="/collections/dresses" class="hover:text-white transition-colors">Silk & Evening Dresses</a></li>
+          <li><a href="/collections/outerwear" class="hover:text-white transition-colors">Coats & Tailored Blazers</a></li>
+          <li><a href="/collections/knitwear" class="hover:text-white transition-colors">Cashmere Essentials</a></li>
+          <li><a href="/collections/sets" class="hover:text-white transition-colors">Coordinated Sets</a></li>
+          <li><a href="/collections/sale" class="hover:text-white transition-colors text-[#D47A65]">Archive Sale</a></li>
+        </ul>
+      </div>
+
+      <!-- Links Column 2: Client Services -->
+      <div>
+        <h4 class="text-xs uppercase tracking-[0.2em] font-medium text-white mb-4">Client Care</h4>
+        <ul class="flex flex-col gap-2.5 text-xs text-neutral-400 font-light">
+          <li><a href="/pages/shipping-returns" class="hover:text-white transition-colors">Shipping & Returns</a></li>
+          <li><a href="#SizeGuideModal" data-modal-open class="hover:text-white transition-colors cursor-pointer">Sizing & Measurements</a></li>
+          <li><a href="/pages/fabric-care" class="hover:text-white transition-colors">Silk & Cashmere Care</a></li>
+          <li><a href="/pages/order-tracking" class="hover:text-white transition-colors">Track Your Order</a></li>
+          <li><a href="/pages/contact" class="hover:text-white transition-colors">Personal Concierge</a></li>
+        </ul>
+      </div>
+
+      <!-- Links Column 3: The Maison -->
+      <div>
+        <h4 class="text-xs uppercase tracking-[0.2em] font-medium text-white mb-4">The Maison</h4>
+        <ul class="flex flex-col gap-2.5 text-xs text-neutral-400 font-light">
+          <li><a href="/pages/about" class="hover:text-white transition-colors">Our Atelier Story</a></li>
+          <li><a href="/pages/sustainability" class="hover:text-white transition-colors">Traceability & Ethics</a></li>
+          <li><a href="/pages/press" class="hover:text-white transition-colors">Press & Editorials</a></li>
+          <li><a href="/pages/stockists" class="hover:text-white transition-colors">Global Boutiques</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-neutral-500 font-light">
+      <div class="flex items-center gap-6">
+        <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+        <a href="/policies/privacy-policy" class="hover:underline">Privacy Policy</a>
+        <a href="/policies/terms-of-service" class="hover:underline">Terms of Service</a>
+      </div>
+
+      <!-- Payment Badges / Confidence -->
+      <div class="flex items-center gap-3 opacity-70">
+        <span class="text-[10px] tracking-wider uppercase">Encrypted 256-Bit Checkout</span>
+        <span class="text-[10px]">&bull;</span>
+        <span class="text-[10px]">Apple Pay</span>
+        <span class="text-[10px]">&bull;</span>
+        <span class="text-[10px]">Visa / Mastercard</span>
+        <span class="text-[10px]">&bull;</span>
+        <span class="text-[10px]">Klarna Pay in 4</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_title",
+      "label": "Brand Title",
+      "default": "AURELIA"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_bio",
+      "label": "Brand Bio",
+      "default": "An independent design atelier dedicated to timeless feminine tailoring, mindful European craftsmanship, and sculptural modern silhouettes."
+    }
+  ]
+}
+{% endschema %}

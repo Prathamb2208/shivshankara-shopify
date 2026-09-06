@@ -1,0 +1,112 @@
+{% comment %}
+  Renders a product card
+  Accepts:
+  - product: {Object} Product Liquid object
+  - show_secondary_image: {Boolean}
+  - show_vendor: {Boolean}
+  - show_rating: {Boolean}
+  - section_id: {String}
+{% endcomment %}
+
+<div class="product-card" data-product-id="{{ product.id }}">
+  <div class="product-card__media-wrapper relative overflow-hidden group">
+    <a href="{{ product.url }}" class="product-card__link block relative aspect-[3/4] bg-neutral-100">
+      {%- if product.featured_media -%}
+        <img
+          src="{{ product.featured_media | image_url: width: 600 }}"
+          alt="{{ product.featured_media.alt | escape }}"
+          class="product-card__image product-card__image--primary object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105"
+          loading="lazy"
+          width="600"
+          height="800"
+        >
+        {%- if product.media[1] != nil and settings.show_secondary_image_on_hover -%}
+          <img
+            src="{{ product.media[1] | image_url: width: 600 }}"
+            alt="{{ product.media[1].alt | escape }}"
+            class="product-card__image product-card__image--secondary object-cover w-full h-full absolute inset-0 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+            loading="lazy"
+            width="600"
+            height="800"
+          >
+        {%- endif -%}
+      {%- else -%}
+        <div class="product-card__placeholder flex items-center justify-center h-full text-muted">
+          <span>{{ 'products.product.unavailable' | t }}</span>
+        </div>
+      {%- endif -%}
+    </a>
+
+    <!-- Badges -->
+    <div class="product-card__badges absolute top-3 left-3 flex flex-col gap-1 pointer-events-none z-10">
+      {%- if product.compare_at_price > product.price -%}
+        <span class="badge badge--sale uppercase text-[10px] tracking-wider px-2 py-0.5 bg-[var(--color-sale)] text-white font-medium">
+          Sale
+        </span>
+      {%- elsif product.tags contains 'new' or product.tags contains 'New' -%}
+        <span class="badge badge--new uppercase text-[10px] tracking-wider px-2 py-0.5 bg-[var(--color-btn-bg)] text-white font-medium">
+          New In
+        </span>
+      {%- endif -%}
+    </div>
+
+    <!-- Quick Add Drawer / Button Overlay -->
+    {% if settings.show_quick_add %}
+      <div class="product-card__quick-add absolute inset-x-3 bottom-3 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-10">
+        {% if product.variants.size > 1 %}
+          <div class="quick-add-sizes bg-white/95 backdrop-blur-md p-2 rounded shadow-lg border border-[var(--color-border)] text-center">
+            <span class="text-[10px] tracking-widest uppercase text-muted block mb-1.5 font-medium">Quick Select Size</span>
+            <div class="flex items-center justify-center gap-1.5 flex-wrap">
+              {% for variant in product.variants %}
+                <button 
+                  type="button" 
+                  class="size-pill text-xs px-2.5 py-1 border border-neutral-300 hover:border-black hover:bg-black hover:text-white transition-colors duration-200 disabled:opacity-40 disabled:pointer-events-none"
+                  data-variant-id="{{ variant.id }}"
+                  {% unless variant.available %}disabled{% endunless %}
+                >
+                  {{ variant.title }}
+                </button>
+              {% endfor %}
+            </div>
+          </div>
+        {% else %}
+          <button 
+            type="button"
+            class="btn-quick-add w-full py-2.5 px-4 bg-[var(--color-btn-bg)] text-[var(--color-btn-text)] text-xs tracking-widest uppercase font-medium hover:bg-black transition-colors duration-200 shadow-md"
+            data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+          >
+            + Quick Add
+          </button>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Content & Info -->
+  <div class="product-card__content pt-3 flex flex-col gap-1">
+    <div class="flex items-start justify-between gap-2">
+      <h3 class="product-card__title text-sm font-normal tracking-wide">
+        <a href="{{ product.url }}" class="hover:underline">
+          {{ product.title }}
+        </a>
+      </h3>
+      {% render 'price', product: product, show_badges: false %}
+    </div>
+
+    {%- if product.metafields.custom.subtitle -%}
+      <p class="text-xs text-muted font-light">{{ product.metafields.custom.subtitle }}</p>
+    {%- endif -%}
+
+    <!-- Visual Color Options -->
+    {%- if settings.show_color_swatches -%}
+      {% for option in product.options_with_values %}
+        {% assign opt_name = option.name | downcase %}
+        {% if opt_name contains 'color' or opt_name contains 'colour' %}
+          <div class="mt-1">
+            {% render 'color-swatches', product: product, option: option, is_pdp: false %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    {%- endif -%}
+  </div>
+</div>

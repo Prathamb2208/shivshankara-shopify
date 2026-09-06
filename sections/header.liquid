@@ -1,0 +1,147 @@
+<header class="site-header sticky top-0 z-40 bg-[var(--color-bg)]/95 backdrop-blur-md border-b border-[var(--color-border)] transition-all duration-300" id="SiteHeader">
+  <div class="site-header__wrapper container mx-auto px-4 lg:px-8 h-20 flex items-center justify-between">
+    
+    <!-- Mobile Hamburger Toggle -->
+    <div class="header__left flex items-center gap-4 lg:hidden">
+      <button type="button" class="header__icon-btn" id="MobileNavToggle" aria-label="Open navigation menu">
+        {% render 'icon-menu' %}
+      </button>
+      <button type="button" class="header__icon-btn" id="SearchModalToggleMobile" aria-label="Search">
+        {% render 'icon-search' %}
+      </button>
+    </div>
+
+    <!-- Desktop Navigation Left Links -->
+    <nav class="hidden lg:flex items-center gap-7 text-xs uppercase tracking-widest font-medium text-[var(--color-text)]">
+      {%- for link in section.settings.menu.links limit: 3 -%}
+        <a href="{{ link.url }}" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)] {% if link.active %}active{% endif %}">
+          {{ link.title }}
+        </a>
+      {%- else -%}
+        <a href="/collections/new-in" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">New In</a>
+        <a href="/collections/dresses" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Dresses</a>
+        <a href="/collections/outerwear" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Outerwear</a>
+      {%- endfor -%}
+    </nav>
+
+    <!-- Brand Logo / Wordmark -->
+    <div class="header__center text-center">
+      <a href="/" class="site-logo block focus:outline-none">
+        {%- if section.settings.logo != blank -%}
+          <img 
+            src="{{ section.settings.logo | image_url: width: 300 }}" 
+            alt="{{ shop.name }}" 
+            class="h-8 lg:h-10 w-auto mx-auto object-contain"
+            width="160" 
+            height="40"
+          >
+        {%- else -%}
+          <span class="font-serif text-2xl lg:text-3xl tracking-[0.2em] font-light uppercase text-[var(--color-text)]">
+            {{ section.settings.brand_name | default: 'AURELIA' }}
+          </span>
+          <span class="block text-[8px] tracking-[0.35em] uppercase text-muted -mt-1 font-sans">
+            STUDIOS &bull; PARIS
+          </span>
+        {%- endif -%}
+      </a>
+    </div>
+
+    <!-- Desktop Navigation Right Links & Actions -->
+    <div class="header__right flex items-center justify-end gap-6">
+      <nav class="hidden lg:flex items-center gap-7 text-xs uppercase tracking-widest font-medium text-[var(--color-text)] mr-2">
+        {%- for link in section.settings.menu.links offset: 3 -%}
+          <a href="{{ link.url }}" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)] {% if link.active %}active{% endif %}">
+            {{ link.title }}
+          </a>
+        {%- else -%}
+          <a href="/collections/knitwear" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Knitwear</a>
+          <a href="/pages/lookbook" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Lookbook</a>
+          <a href="/collections/sale" class="nav-link relative py-2 text-[var(--color-sale)] transition-colors hover:opacity-80">Sale</a>
+        {%- endfor -%}
+      </nav>
+
+      <!-- Desktop Search -->
+      <button type="button" class="header__icon-btn hidden lg:flex items-center text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors" id="SearchModalToggle" aria-label="Search">
+        {% render 'icon-search' %}
+      </button>
+
+      <!-- Account (Customer) -->
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon-btn hidden lg:block text-[var(--color-text)] hover:text-[var(--color-accent)]">
+          <svg class="icon icon-account" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+      {%- endif -%}
+
+      <!-- Cart Trigger with Badge -->
+      <button 
+        type="button" 
+        class="header__cart-trigger flex items-center gap-1.5 text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors relative" 
+        id="CartDrawerTrigger" 
+        aria-label="View Shopping Bag"
+      >
+        {% render 'icon-cart' %}
+        <span class="cart-count text-xs font-medium font-sans px-1.5 py-0.5 rounded-full bg-[var(--color-btn-bg)] text-[var(--color-btn-text)] leading-none" id="CartCount">
+          {{ cart.item_count | default: 0 }}
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-nav-drawer fixed inset-0 bg-black/50 backdrop-blur-sm z-50 lg:hidden opacity-0 pointer-events-none transition-opacity duration-300" id="MobileNavDrawer">
+    <div class="mobile-nav-content w-[85%] max-w-sm h-full bg-[var(--color-bg)] flex flex-col justify-between p-6 -translate-x-full transition-transform duration-300 shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-[var(--color-border)]">
+          <span class="font-serif text-xl tracking-[0.2em] uppercase font-light">AURELIA</span>
+          <button type="button" class="p-2 -mr-2" id="MobileNavClose" aria-label="Close menu">
+            {% render 'icon-close' %}
+          </button>
+        </div>
+
+        <nav class="flex flex-col gap-4 mt-6 text-sm uppercase tracking-widest font-medium">
+          <a href="/collections/new-in" class="py-2 border-b border-neutral-200/50">New In &bull; Drop 01</a>
+          <a href="/collections/dresses" class="py-2 border-b border-neutral-200/50">Dresses & Jumpsuits</a>
+          <a href="/collections/outerwear" class="py-2 border-b border-neutral-200/50">Coats & Blazers</a>
+          <a href="/collections/knitwear" class="py-2 border-b border-neutral-200/50">Cashmere & Knitwear</a>
+          <a href="/collections/sets" class="py-2 border-b border-neutral-200/50">Matching Sets</a>
+          <a href="/pages/lookbook" class="py-2 border-b border-neutral-200/50">Fall Lookbook</a>
+          <a href="/collections/sale" class="py-2 text-[var(--color-sale)]">Archive Sale</a>
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-[var(--color-border)] flex flex-col gap-3 text-xs text-muted">
+        <a href="/pages/about" class="hover:underline">About the Atelier</a>
+        <a href="/pages/sustainability" class="hover:underline">Sustainable Practices</a>
+        <a href="/pages/contact" class="hover:underline">Customer Concierge</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "AURELIA"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

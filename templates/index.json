@@ -1,0 +1,126 @@
+{
+  "sections": {
+    "hero_banner": {
+      "type": "hero-banner",
+      "settings": {
+        "subheading": "Autumn / Winter 2026 Collection",
+        "heading": "Silhouettes Born from Quiet Confidence",
+        "text": "Sculpted tailoring, fluid silk slip silhouettes, and organic virgin wool coats crafted for the modern muse.",
+        "button_label_1": "Shop New Arrivals",
+        "button_link_1": "/collections/new-in",
+        "button_label_2": "Explore Lookbook",
+        "button_link_2": "/pages/lookbook",
+        "overlay_opacity": 35
+      }
+    },
+    "categories_grid": {
+      "type": "categories-grid",
+      "blocks": {
+        "cat_1": {
+          "type": "category",
+          "settings": {
+            "title": "Dresses & Silks",
+            "link": "/collections/dresses"
+          }
+        },
+        "cat_2": {
+          "type": "category",
+          "settings": {
+            "title": "Coats & Tailored Blazers",
+            "link": "/collections/outerwear"
+          }
+        },
+        "cat_3": {
+          "type": "category",
+          "settings": {
+            "title": "Cashmere & Knitwear",
+            "link": "/collections/knitwear"
+          }
+        },
+        "cat_4": {
+          "type": "category",
+          "settings": {
+            "title": "Artisanal Accessories",
+            "link": "/collections/accessories"
+          }
+        }
+      },
+      "block_order": ["cat_1", "cat_2", "cat_3", "cat_4"],
+      "settings": {
+        "subheading": "Curated Departments",
+        "title": "Shop By Category"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "subheading": "Carefully Curated",
+        "title": "The New Season Edit",
+        "products_to_show": 8,
+        "view_all_label": "View Complete Edit"
+      }
+    },
+    "lookbook": {
+      "type": "lookbook-shop-the-look",
+      "blocks": {
+        "pin_1": {
+          "type": "hotspot",
+          "settings": {
+            "custom_title": "Virgin Wool Overcoat",
+            "pin_x": 48,
+            "pin_y": 30
+          }
+        },
+        "pin_2": {
+          "type": "hotspot",
+          "settings": {
+            "custom_title": "Bias-Cut Silk Slip Dress",
+            "pin_x": 52,
+            "pin_y": 55
+          }
+        },
+        "pin_3": {
+          "type": "hotspot",
+          "settings": {
+            "custom_title": "Sculpted Nappa Shoulder Bag",
+            "pin_x": 35,
+            "pin_y": 68
+          }
+        }
+      },
+      "block_order": ["pin_1", "pin_2", "pin_3"],
+      "settings": {
+        "subheading": "Shop The Look",
+        "heading": "The Art of Effortless Layering",
+        "text": "Discover our stylist-curated ensemble. Designed to transition seamlessly from morning atelier appointments to twilight vernissages."
+      }
+    },
+    "image_with_text": {
+      "type": "image-with-text",
+      "settings": {
+        "subheading": "The Philosophy",
+        "title": "Thoughtful Design, Uncompromising Form",
+        "layout": "image_first",
+        "button_label": "Read Atelier Story",
+        "button_link": "/pages/about"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "subheading": "Privileged Access",
+        "title": "Enter the Aurelia Circle",
+        "text": "Enjoy 15% off your inaugural order, priority access to capsule drops, and private salon invites.",
+        "button_label": "Subscribe"
+      }
+    }
+  },
+  "order": [
+    "hero_banner",
+    "categories_grid",
+    "featured_collection",
+    "lookbook",
+    "image_with_text",
+    "newsletter"
+  ]
+}

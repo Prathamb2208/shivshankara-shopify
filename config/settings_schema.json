@@ -1,0 +1,172 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Aurelia Luxury Fashion",
+    "theme_version": "1.0.0",
+    "theme_author": "Antigravity Fashion Labs",
+    "theme_documentation_url": "https://shopify.dev",
+    "theme_support_url": "https://shopify.dev"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Page Background",
+        "default": "#FBF9F5"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Card & Surface Background",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Primary Body Text",
+        "default": "#171513"
+      },
+      {
+        "type": "color",
+        "id": "color_muted_text",
+        "label": "Muted / Secondary Text",
+        "default": "#706B65"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Borders & Dividers",
+        "default": "#E8E2D9"
+      },
+      {
+        "type": "color",
+        "id": "color_primary_btn_bg",
+        "label": "Primary Button Background",
+        "default": "#171513"
+      },
+      {
+        "type": "color",
+        "id": "color_primary_btn_text",
+        "label": "Primary Button Text",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent Color (Badges, Highlights)",
+        "default": "#8E735B"
+      },
+      {
+        "type": "color",
+        "id": "color_sale_badge",
+        "label": "Sale Badge Color",
+        "default": "#A8422B"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Headings Font",
+        "default": "cormorant_garamond_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body Font",
+        "default": "assistant_n4"
+      },
+      {
+        "type": "select",
+        "id": "heading_letter_spacing",
+        "label": "Heading Letter Spacing",
+        "options": [
+          { "value": "normal", "label": "Normal" },
+          { "value": "wide", "label": "Wide (Editorial)" },
+          { "value": "tight", "label": "Tight (Modern)" }
+        ],
+        "default": "wide"
+      }
+    ]
+  },
+  {
+    "name": "Cart Drawer & Shipping",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_cart_drawer",
+        "label": "Enable Slide-out Cart Drawer",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_free_shipping_bar",
+        "label": "Enable Free Shipping Progress Bar",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "Free Shipping Threshold ($)",
+        "default": 150
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_heading",
+        "label": "Upsell Section Heading",
+        "default": "Pairs Beautifully With"
+      }
+    ]
+  },
+  {
+    "name": "Product Grid & Cards",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_secondary_image_on_hover",
+        "label": "Show Secondary Image on Hover",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_color_swatches",
+        "label": "Show Color Swatches on Grid",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_quick_add",
+        "label": "Show Quick Add Button",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Brand Socials",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram URL",
+        "default": "https://instagram.com"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "TikTok URL",
+        "default": "https://tiktok.com"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest URL",
+        "default": "https://pinterest.com"
+      }
+    ]
+  }
+]

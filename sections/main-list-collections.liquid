@@ -1,0 +1,30 @@
+<section class="list-collections-section py-16 bg-[var(--color-bg)]">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="text-center max-w-xl mx-auto mb-12">
+      <span class="text-xs uppercase tracking-[0.25em] text-muted font-medium block mb-2">The Directory</span>
+      <h1 class="font-serif text-3xl sm:text-4xl font-normal">All Collections</h1>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+      {%- for collection in collections -%}
+        <div class="collection-item group relative aspect-[4/5] bg-neutral-100 overflow-hidden rounded">
+          <a href="{{ collection.url }}" class="block w-full h-full">
+            {%- if collection.featured_image -%}
+              <img src="{{ collection.featured_image | image_url: width: 600 }}" alt="{{ collection.title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            {%- endif -%}
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center p-4 text-center text-white">
+              <h3 class="font-serif text-2xl font-light">{{ collection.title }}</h3>
+            </div>
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collections List",
+  "settings": []
+}
+{% endschema %}

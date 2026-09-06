@@ -1,0 +1,25 @@
+<article class="main-article-section py-16 bg-[var(--color-bg)]">
+  <div class="container mx-auto px-4 max-w-2xl">
+    <span class="text-xs uppercase tracking-[0.25em] text-muted font-medium block mb-3 text-center">
+      {{ article.published_at | date: '%B %d, %Y' }}
+    </span>
+    <h1 class="font-serif text-3xl sm:text-5xl font-light text-center mb-8">
+      {{ article.title }}
+    </h1>
+    {%- if article.image -%}
+      <div class="aspect-[16/9] overflow-hidden rounded mb-8">
+        <img src="{{ article.image | image_url: width: 1000 }}" alt="{{ article.title }}" class="w-full h-full object-cover">
+      </div>
+    {%- endif -%}
+    <div class="prose prose-neutral text-sm text-neutral-700 leading-relaxed">
+      {{ article.content }}
+    </div>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Article Content",
+  "settings": []
+}
+{% endschema %}

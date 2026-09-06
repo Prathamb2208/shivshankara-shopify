@@ -1,0 +1,40 @@
+{% comment %}
+  Renders color swatches for product cards and PDP
+  Accepts:
+  - product: {Object} Product Liquid object
+  - option: {Object} The color option object
+  - is_pdp: {Boolean}
+{% endcomment %}
+
+<div class="product-swatches {% if is_pdp %}product-swatches--pdp{% endif %}" data-option-name="{{ option.name }}">
+  <div class="swatch-list flex items-center gap-1.5 flex-wrap">
+    {% for value in option.values %}
+      {% assign color_downcased = value | downcase | replace: ' ', '-' %}
+      <label class="swatch-item cursor-pointer relative" title="{{ value }}">
+        <input 
+          type="radio" 
+          name="option-{{ option.position }}-{{ product.id }}" 
+          value="{{ value | escape }}" 
+          {% if option.selected_value == value or forloop.first %}checked{% endif %}
+          class="visually-hidden swatch-input"
+          data-color="{{ color_downcased }}"
+        >
+        <span class="swatch-bubble swatch-color-{{ color_downcased }}" style="
+          {% case color_downcased %}
+            {% when 'black' or 'noir' or 'obsidian' %} background-color: #171513;
+            {% when 'white' or 'ivory' or 'ecru' or 'chalk' %} background-color: #FAF8F5; border: 1px solid #D6D1C7;
+            {% when 'beige' or 'camel' or 'taupe' or 'sand' %} background-color: #C8B9A6;
+            {% when 'brown' or 'cocoa' or 'espresso' or 'chocolate' %} background-color: #4A3B32;
+            {% when 'olive' or 'sage' or 'khaki' %} background-color: #6E755D;
+            {% when 'navy' or 'midnight' %} background-color: #1B2430;
+            {% when 'red' or 'burgundy' or 'bordeaux' or 'cherry' %} background-color: #801826;
+            {% when 'blush' or 'rose' or 'pink' %} background-color: #E8BFB8;
+            {% when 'terracotta' or 'rust' %} background-color: #B85D43;
+            {% else %} background-color: #C8B9A6;
+          {% endcase %}
+        "></span>
+        <span class="swatch-label visually-hidden">{{ value }}</span>
+      </label>
+    {% endfor %}
+  </div>
+</div>

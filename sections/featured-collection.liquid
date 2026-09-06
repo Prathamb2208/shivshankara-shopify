@@ -1,0 +1,91 @@
+<section class="featured-collection-section py-16 lg:py-24 bg-[var(--color-bg)]">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-[var(--color-border)]">
+      <div>
+        {%- if section.settings.subheading != blank -%}
+          <span class="text-xs uppercase tracking-[0.25em] text-muted font-medium block mb-1">
+            {{ section.settings.subheading }}
+          </span>
+        {%- endif -%}
+        <h2 class="font-serif text-3xl lg:text-4xl font-normal tracking-tight">
+          {{ section.settings.title }}
+        </h2>
+      </div>
+
+      <div class="mt-4 md:mt-0">
+        <a href="{{ section.settings.collection.url | default: '/collections/all' }}" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-medium hover:text-[var(--color-accent)] transition-colors">
+          <span>{{ section.settings.view_all_label | default: 'View Complete Edit' }}</span>
+          <span>&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 lg:gap-x-6 lg:gap-y-12">
+      {%- assign collection = section.settings.collection -%}
+      {%- if collection != blank and collection.products.size > 0 -%}
+        {%- for product in collection.products limit: section.settings.products_to_show -%}
+          {% render 'product-card', product: product, show_secondary_image: true %}
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Onboarding Placeholders when no products are uploaded yet -->
+        {%- for i in (1..section.settings.products_to_show) -%}
+          <div class="product-card onboarding-card">
+            <div class="aspect-[3/4] bg-neutral-200 flex items-center justify-center text-muted text-xs uppercase tracking-wider">
+              <span>Sample Product {{ i }}</span>
+            </div>
+            <div class="pt-3">
+              <h3 class="text-sm font-normal">Aurelia Signature Piece {{ i }}</h3>
+              <div class="text-xs text-muted mt-1">$195.00</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Carefully Curated"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "The New Season Edit"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 2,
+      "default": 8,
+      "label": "Products to show"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View All Button Label",
+      "default": "View Complete Edit"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

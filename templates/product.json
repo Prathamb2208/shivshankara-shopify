@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main_product": {
+      "type": "main-product",
+      "settings": {
+        "enable_sticky_info": true
+      }
+    },
+    "recommendations": {
+      "type": "featured-collection",
+      "settings": {
+        "subheading": "Stylist Picks",
+        "title": "You May Also Admire",
+        "products_to_show": 4,
+        "view_all_label": "Shop All Pieces"
+      }
+    }
+  },
+  "order": [
+    "main_product",
+    "recommendations"
+  ]
+}

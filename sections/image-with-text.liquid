@@ -1,0 +1,135 @@
+<section class="image-with-text-section py-16 lg:py-24 bg-[var(--color-bg)]">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center {% if section.settings.layout == 'image_second' %}lg:flex-row-reverse{% endif %}">
+      
+      <!-- Image Column -->
+      <div class="lg:col-span-6 {% if section.settings.layout == 'image_second' %}lg:order-2{% endif %}">
+        <div class="relative aspect-[4/5] rounded overflow-hidden shadow-lg bg-neutral-100">
+          {%- if section.settings.image != blank -%}
+            <img 
+              src="{{ section.settings.image | image_url: width: 1000 }}" 
+              alt="{{ section.settings.title | escape }}"
+              class="w-full h-full object-cover object-center"
+              loading="lazy"
+              width="800"
+              height="1000"
+            >
+          {%- else -%}
+            <img 
+              src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1200&auto=format&fit=crop" 
+              alt="Atelier Craftsmanship"
+              class="w-full h-full object-cover object-center"
+              loading="lazy"
+              width="800"
+              height="1000"
+            >
+          {%- endif -%}
+
+          <!-- Floating Atelier Badge -->
+          <div class="absolute bottom-6 right-6 p-4 bg-white/95 backdrop-blur-md border border-neutral-200 rounded shadow-xl text-center max-w-[160px]">
+            <span class="block text-[10px] uppercase tracking-widest text-muted">Provenance</span>
+            <span class="font-serif text-sm font-normal text-neutral-900 block mt-0.5">Como Silk & Biella Wool</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text Column -->
+      <div class="lg:col-span-6 {% if section.settings.layout == 'image_second' %}lg:order-1{% endif %}">
+        {%- if section.settings.subheading != blank -%}
+          <span class="text-xs uppercase tracking-[0.25em] text-muted font-medium block mb-3">
+            {{ section.settings.subheading }}
+          </span>
+        {%- endif -%}
+
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight leading-tight mb-6">
+          {{ section.settings.title }}
+        </h2>
+
+        <div class="text-sm lg:text-base text-muted font-light leading-relaxed mb-8 flex flex-col gap-4">
+          {{ section.settings.text }}
+        </div>
+
+        <!-- Trust / Craftsmanship Badges -->
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-[var(--color-border)] mb-8">
+          <div>
+            <span class="block font-serif text-2xl font-light text-[var(--color-text)]">100%</span>
+            <span class="text-[11px] uppercase tracking-wider text-muted font-medium">Traceable Silks</span>
+          </div>
+          <div>
+            <span class="block font-serif text-2xl font-light text-[var(--color-text)]">0 Waste</span>
+            <span class="text-[11px] uppercase tracking-wider text-muted font-medium">Pattern Cutting</span>
+          </div>
+          <div>
+            <span class="block font-serif text-2xl font-light text-[var(--color-text)]">Milanese</span>
+            <span class="text-[11px] uppercase tracking-wider text-muted font-medium">Tailoring Guild</span>
+          </div>
+        </div>
+
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link }}" class="inline-flex items-center gap-3 px-7 py-3.5 bg-[var(--color-btn-bg)] text-[var(--color-btn-text)] text-xs uppercase tracking-[0.2em] font-medium hover:opacity-90 transition-opacity">
+            <span>{{ section.settings.button_label }}</span>
+            <span>&rarr;</span>
+          </a>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image with Text",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Image Desktop Alignment",
+      "options": [
+        { "value": "image_first", "label": "Image on Left" },
+        { "value": "image_second", "label": "Image on Right" }
+      ],
+      "default": "image_first"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "The Philosophy"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Thoughtful Design, Uncompromising Form"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Every Aurelia garment begins with tactile exploration. We collaborate with centuries-old European textile mills to source Mulberry silks, recycled double-faced cashmere, and deadstock twill.</p><p>Crafted to be worn on repeat, each silhouette honors feminine ease without sacrificing architectural structure.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Read Atelier Story"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with Text"
+    }
+  ]
+}
+{% endschema %}

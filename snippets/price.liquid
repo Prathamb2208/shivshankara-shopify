@@ -1,0 +1,52 @@
+{% comment %}
+  Renders a list of product's price (regular, sale)
+  Accepts:
+  - product: {Object} Product Liquid object
+  - use_variant: {Boolean} Renders selected or first variant price
+  - show_badges: {Boolean} Renders 'Sale' and 'Sold Out' tags
+{% endcomment %}
+{%- liquid
+  if use_variant
+    assign target = product.selected_or_first_available_variant
+  else
+    assign target = product
+  endif
+
+  assign compare_at_price = target.compare_at_price
+  assign price = target.price | default: 1999
+  assign available = target.available | default: false
+  assign money_price = price | money
+-%}
+
+<div class="price-container {% if compare_at_price > price %}price--on-sale{% endif %} {% unless available %}price--sold-out{% endunless %}">
+  <div class="price__regular">
+    <span class="visually-hidden">Regular price</span>
+    <span class="price-item price-item--regular">
+      {{ money_price }}
+    </span>
+  </div>
+  {%- if compare_at_price > price -%}
+    <div class="price__sale">
+      <span class="visually-hidden">Sale price</span>
+      <span class="price-item price-item--sale">
+        {{ money_price }}
+      </span>
+      <span class="visually-hidden">Original price</span>
+      <s class="price-item price-item--compare">
+        {{ compare_at_price | money }}
+      </s>
+    </div>
+  {%- endif -%}
+
+  {%- if show_badges -%}
+    {%- if compare_at_price > price -%}
+      <span class="badge badge--sale">
+        Sale
+      </span>
+    {%- elsif available == false -%}
+      <span class="badge badge--soldout">
+        Sold Out
+      </span>
+    {%- endif -%}
+  {%- endif -%}
+</div>

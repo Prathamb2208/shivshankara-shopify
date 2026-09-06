@@ -1,0 +1,93 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_primary_btn_bg }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+    {%- if page_title -%}
+      <title>{{ page_title }} &ndash; {{ shop.name }}</title>
+    {%- else -%}
+      <title>{{ shop.name }}</title>
+    {%- endif -%}
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    <!-- Dynamic Theme Styling Variables -->
+    <style>
+      :root {
+        --color-bg: {{ settings.color_background | default: '#FBF9F5' }};
+        --color-surface: {{ settings.color_surface | default: '#FFFFFF' }};
+        --color-text: {{ settings.color_text | default: '#171513' }};
+        --color-muted: {{ settings.color_muted_text | default: '#706B65' }};
+        --color-border: {{ settings.color_border | default: '#E8E2D9' }};
+        --color-btn-bg: {{ settings.color_primary_btn_bg | default: '#171513' }};
+        --color-btn-text: {{ settings.color_primary_btn_text | default: '#FFFFFF' }};
+        --color-accent: {{ settings.color_accent | default: '#8E735B' }};
+        --color-sale: {{ settings.color_sale_badge | default: '#A8422B' }};
+        
+        --font-serif: 'Cormorant Garamond', Georgia, serif;
+        --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --container-max: 1380px;
+        --gutter: 24px;
+        --border-radius: 4px;
+      }
+    </style>
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="template-{{ template.name | handle }}">
+    <a class="skip-to-content visually-hidden" href="#MainContent">
+      {{ 'general.accessibility.skip_to_content' | t }}
+    </a>
+
+    {% section 'announcement-bar' %}
+    {% section 'header' %}
+
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+    {% if settings.enable_cart_drawer %}
+      {% section 'cart-drawer' %}
+    {% endif %}
+
+    {% render 'size-guide-modal' %}
+
+    <script>
+      window.shopUrl = '{{ request.origin }}';
+      window.routes = {
+        cart_add_url: '{{ routes.cart_add_url }}',
+        cart_change_url: '{{ routes.cart_change_url }}',
+        cart_update_url: '{{ routes.cart_update_url }}',
+        cart_url: '{{ routes.cart_url }}',
+        predictive_search_url: '{{ routes.predictive_search_url }}'
+      };
+      window.cartStrings = {
+        error: `{{ 'sections.cart.cart_error' | t }}`,
+        quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`
+      };
+      window.themeSettings = {
+        freeShippingThreshold: {{ settings.free_shipping_threshold | default: 150 }} * 100,
+        enableCartDrawer: {{ settings.enable_cart_drawer | default: true }}
+      };
+    </script>
+
+    {{ 'theme.js' | asset_url | script_tag }}
+    {{ 'cart-drawer.js' | asset_url | script_tag }}
+    {{ 'product-swatches.js' | asset_url | script_tag }}
+  </body>
+</html>

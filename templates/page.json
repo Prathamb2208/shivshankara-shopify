@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "page_content": {
+      "type": "image-with-text",
+      "settings": {
+        "subheading": "The Atelier",
+        "title": "A Commitment to Timeless Craft",
+        "layout": "image_first"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "subheading": "Private Invitations",
+        "title": "Subscribe for Salon Updates"
+      }
+    }
+  },
+  "order": [
+    "page_content",
+    "newsletter"
+  ]
+}

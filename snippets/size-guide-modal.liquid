@@ -1,0 +1,167 @@
+<div id="SizeGuideModal" class="size-guide-modal micromodal" aria-hidden="true">
+  <div class="size-guide-modal__overlay" tabindex="-1" data-modal-close>
+    <div class="size-guide-modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-size-guide-title">
+      <header class="size-guide-modal__header">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-muted">Aurelia Sizing Spec</span>
+          <h3 id="modal-size-guide-title" class="size-guide-modal__title font-serif">Women's Size & Fit Guide</h3>
+        </div>
+        <button class="size-guide-modal__close" aria-label="Close modal" data-modal-close>
+          {% render 'icon-close' %}
+        </button>
+      </header>
+
+      <div class="size-guide-modal__content">
+        <!-- Units Toggle -->
+        <div class="size-guide-toggle-wrapper">
+          <div class="size-guide-toggle">
+            <button type="button" class="unit-btn active" data-unit="inches">Inches (in)</button>
+            <button type="button" class="unit-btn" data-unit="cm">Centimeters (cm)</button>
+          </div>
+          <span class="size-guide-note">Tailored true to size with slight relaxation</span>
+        </div>
+
+        <!-- Sizing Chart Table -->
+        <div class="table-responsive">
+          <table class="size-chart-table" id="size-table-inches">
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>US</th>
+                <th>UK / AU</th>
+                <th>EU</th>
+                <th>Bust</th>
+                <th>Waist</th>
+                <th>Hips</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>XS</strong></td>
+                <td>0 - 2</td>
+                <td>4 - 6</td>
+                <td>32 - 34</td>
+                <td>32" - 33"</td>
+                <td>24" - 25"</td>
+                <td>34" - 35"</td>
+              </tr>
+              <tr>
+                <td><strong>S</strong></td>
+                <td>4 - 6</td>
+                <td>8 - 10</td>
+                <td>36 - 38</td>
+                <td>34" - 35"</td>
+                <td>26" - 27"</td>
+                <td>36" - 37"</td>
+              </tr>
+              <tr>
+                <td><strong>M</strong></td>
+                <td>8 - 10</td>
+                <td>12 - 14</td>
+                <td>40 - 42</td>
+                <td>36" - 37"</td>
+                <td>28" - 29"</td>
+                <td>38" - 39"</td>
+              </tr>
+              <tr>
+                <td><strong>L</strong></td>
+                <td>12 - 14</td>
+                <td>16</td>
+                <td>44</td>
+                <td>38.5" - 40"</td>
+                <td>30.5" - 32"</td>
+                <td>40.5" - 42"</td>
+              </tr>
+              <tr>
+                <td><strong>XL</strong></td>
+                <td>16</td>
+                <td>18</td>
+                <td>46</td>
+                <td>41.5" - 43"</td>
+                <td>33.5" - 35"</td>
+                <td>43.5" - 45"</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="size-chart-table visually-hidden" id="size-table-cm">
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>US</th>
+                <th>UK / AU</th>
+                <th>EU</th>
+                <th>Bust</th>
+                <th>Waist</th>
+                <th>Hips</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>XS</strong></td>
+                <td>0 - 2</td>
+                <td>4 - 6</td>
+                <td>32 - 34</td>
+                <td>81 - 84 cm</td>
+                <td>61 - 64 cm</td>
+                <td>86 - 89 cm</td>
+              </tr>
+              <tr>
+                <td><strong>S</strong></td>
+                <td>4 - 6</td>
+                <td>8 - 10</td>
+                <td>36 - 38</td>
+                <td>86 - 89 cm</td>
+                <td>66 - 69 cm</td>
+                <td>91 - 94 cm</td>
+              </tr>
+              <tr>
+                <td><strong>M</strong></td>
+                <td>8 - 10</td>
+                <td>12 - 14</td>
+                <td>40 - 42</td>
+                <td>91 - 94 cm</td>
+                <td>71 - 74 cm</td>
+                <td>96 - 99 cm</td>
+              </tr>
+              <tr>
+                <td><strong>L</strong></td>
+                <td>12 - 14</td>
+                <td>16</td>
+                <td>44</td>
+                <td>98 - 102 cm</td>
+                <td>77 - 81 cm</td>
+                <td>103 - 107 cm</td>
+              </tr>
+              <tr>
+                <td><strong>XL</strong></td>
+                <td>16</td>
+                <td>18</td>
+                <td>46</td>
+                <td>105 - 109 cm</td>
+                <td>85 - 89 cm</td>
+                <td>110 - 114 cm</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- How to Measure Tip -->
+        <div class="size-measure-tips">
+          <h4 class="tips-title font-serif">How to measure:</h4>
+          <div class="tips-grid">
+            <div class="tip-col">
+              <strong>1. Bust:</strong> Measure around the fullest part of your chest with relaxed arms.
+            </div>
+            <div class="tip-col">
+              <strong>2. Waist:</strong> Measure around your natural waistline, keeping tape comfortably loose.
+            </div>
+            <div class="tip-col">
+              <strong>3. Hips:</strong> Measure around the fullest point of your hips and bottom.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

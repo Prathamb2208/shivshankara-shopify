@@ -1,0 +1,9 @@
+{
+  "name": "aurelia-fashion-shopify-theme",
+  "version": "1.0.0",
+  "description": "Shopify Online Store 2.0 Theme for Women's Fashion",
+  "scripts": {
+    "build-zip": "tar -a -c -f shopify-fashion-theme.zip assets config layout locales sections snippets templates",
+    "preview": "npx serve preview"
+  }
+}

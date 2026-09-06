@@ -1,0 +1,255 @@
+/* ==========================================================================
+   AURELIA STUDIOS - Theme Specific Component Styles
+   ========================================================================== */
+
+/* Header & Nav */
+.site-header {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link {
+  position: relative;
+  letter-spacing: 0.18em;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Product Cards */
+.product-card {
+  position: relative;
+}
+
+.product-card__media-wrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: #F4EFEA;
+}
+
+.product-card__image {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+}
+
+.product-card:hover .product-card__image--primary {
+  transform: scale(1.04);
+}
+
+.product-card:hover .product-card__image--secondary {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+/* Swatches */
+.swatch-item {
+  display: inline-block;
+  padding: 2px;
+}
+
+.swatch-bubble {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.swatch-input:checked + .swatch-bubble {
+  box-shadow: 0 0 0 2px var(--color-text, #171513);
+  transform: scale(1.15);
+}
+
+.product-swatches--pdp .swatch-bubble {
+  width: 22px;
+  height: 22px;
+}
+
+/* Size Pills in PDP */
+.size-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--color-surface, #FFFFFF);
+  transition: all 0.2s ease;
+}
+
+.size-input:checked + .size-box {
+  background-color: var(--color-btn-bg, #171513);
+  color: var(--color-btn-text, #FFFFFF);
+  border-color: var(--color-btn-bg, #171513);
+}
+
+.size-pill-option:hover .size-box {
+  border-color: var(--color-btn-bg, #171513);
+}
+
+/* Shop The Look Hotspots */
+.lookbook-pin {
+  cursor: pointer;
+}
+
+.lookbook-pin:hover .lookbook-tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -8px);
+}
+
+.lookbook-tooltip {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate(-50%, 0);
+}
+
+/* Size Guide Modal */
+.size-guide-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+}
+
+.size-guide-modal.is-open {
+  display: block;
+}
+
+.size-guide-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.size-guide-modal__container {
+  background: var(--color-bg, #FBF9F5);
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.size-guide-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border, #E8E2D9);
+}
+
+.size-guide-modal__title {
+  font-size: 24px;
+  margin-top: 4px;
+}
+
+.size-guide-toggle-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.size-guide-toggle {
+  display: inline-flex;
+  padding: 3px;
+  background: #ECE5DC;
+  border-radius: 6px;
+}
+
+.size-guide-toggle .unit-btn {
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.size-guide-toggle .unit-btn.active {
+  background: #FFFFFF;
+  color: #171513;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.size-guide-note {
+  font-size: 11px;
+  color: var(--color-muted, #706B65);
+  font-style: italic;
+}
+
+.size-chart-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.size-chart-table th {
+  padding: 10px 12px;
+  background: #F3ECE2;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--color-border, #E8E2D9);
+}
+
+.size-chart-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #ECE5DC;
+}
+
+.size-measure-tips {
+  background: var(--color-surface, #FFFFFF);
+  border: 1px solid var(--color-border, #E8E2D9);
+  padding: 16px;
+  border-radius: 6px;
+}
+
+.tips-title {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  font-size: 11px;
+  color: var(--color-muted, #706B65);
+}
+
+/* Cart Drawer */
+.cart-drawer-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cart-drawer-overlay.is-open .cart-drawer-panel {
+  transform: translateX(0);
+}
+
+/* Accordion Styling */
+.accordion-item summary::-webkit-details-marker {
+  display: none;
+}

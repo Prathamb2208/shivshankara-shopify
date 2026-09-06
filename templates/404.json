@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main_404": {
+      "type": "hero-banner",
+      "settings": {
+        "subheading": "404 Not Found",
+        "heading": "The Piece You Seek Has Departed",
+        "text": "The page or collection you are looking for may have moved or is no longer available.",
+        "button_label_1": "Return to Boutique",
+        "button_link_1": "/",
+        "button_label_2": "Shop New In",
+        "button_link_2": "/collections/new-in"
+      }
+    }
+  },
+  "order": [
+    "main_404"
+  ]
+}

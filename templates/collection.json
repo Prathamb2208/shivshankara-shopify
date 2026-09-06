@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "main_collection": {
+      "type": "main-collection",
+      "settings": {
+        "products_per_page": 16
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "subheading": "Stay Informed",
+        "title": "Receive New Drop Notifications",
+        "text": "Sign up to be the first to know when limited-edition capsules are released."
+      }
+    }
+  },
+  "order": [
+    "main_collection",
+    "newsletter"
+  ]
+}

@@ -1,0 +1,121 @@
+<section class="categories-grid-section py-16 lg:py-24 bg-[var(--color-bg)]">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="section-header text-center mb-12">
+      {%- if section.settings.subheading != blank -%}
+        <span class="text-xs uppercase tracking-[0.25em] text-muted font-medium block mb-2">{{ section.settings.subheading }}</span>
+      {%- endif -%}
+      <h2 class="font-serif text-3xl lg:text-4xl font-normal tracking-tight">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+      {%- for block in section.blocks -%}
+        <div class="category-card group relative aspect-[4/5] overflow-hidden bg-neutral-100" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.link }}" class="block w-full h-full">
+            {%- if block.settings.image != blank -%}
+              <img 
+                src="{{ block.settings.image | image_url: width: 600 }}" 
+                alt="{{ block.settings.title | escape }}"
+                class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
+                loading="lazy"
+                width="600"
+                height="750"
+              >
+            {%- else -%}
+              <!-- Default curated placeholder images if merchant hasn't uploaded yet -->
+              {% assign img_idx = forloop.index0 | modulo: 4 %}
+              <img 
+                src="{% case img_idx %}
+                  {% when 0 %}https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=700&auto=format&fit=crop
+                  {% when 1 %}https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?q=80&w=700&auto=format&fit=crop
+                  {% when 2 %}https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=700&auto=format&fit=crop
+                  {% else %}https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=700&auto=format&fit=crop
+                {% endcase %}"
+                alt="{{ block.settings.title }}"
+                class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
+                loading="lazy"
+                width="600"
+                height="750"
+              >
+            {%- endif -%}
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition-opacity duration-300"></div>
+
+            <div class="absolute inset-x-4 bottom-5 text-center text-white">
+              <h3 class="font-serif text-xl lg:text-2xl font-light tracking-wide mb-1">{{ block.settings.title }}</h3>
+              <span class="inline-flex items-center text-[10px] uppercase tracking-[0.2em] font-medium opacity-90 group-hover:opacity-100 transition-opacity">
+                Explore &rarr;
+              </span>
+            </div>
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Categories Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Curated Departments"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Shop By Category"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category Tile",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Category Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "default": "Dresses & Silks"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Collection Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Categories Grid",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": { "title": "Dresses & Jumpsuits" }
+        },
+        {
+          "type": "category",
+          "settings": { "title": "Tailored Coats & Blazers" }
+        },
+        {
+          "type": "category",
+          "settings": { "title": "Cashmere & Knitwear" }
+        },
+        {
+          "type": "category",
+          "settings": { "title": "Statement Accessories" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

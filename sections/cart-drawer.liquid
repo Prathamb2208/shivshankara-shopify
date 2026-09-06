@@ -1,0 +1,127 @@
+<div id="CartDrawer" class="cart-drawer-overlay fixed inset-0 z-50 bg-black/60 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300">
+  <div class="cart-drawer-panel fixed top-0 right-0 bottom-0 w-full max-w-md bg-[var(--color-bg)] flex flex-col justify-between shadow-2xl translate-x-full transition-transform duration-300 ease-out">
+    
+    <!-- Drawer Header -->
+    <div class="cart-drawer__header p-5 border-b border-[var(--color-border)] flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <h3 class="font-serif text-xl tracking-wide font-normal">{{ 'cart.general.title' | t }}</h3>
+        <span class="text-xs text-muted font-sans font-medium" id="CartDrawerItemCount">({{ cart.item_count }} items)</span>
+      </div>
+      <button type="button" class="p-2 -mr-2 text-[var(--color-text)] hover:opacity-70" id="CartDrawerClose" aria-label="Close cart">
+        {% render 'icon-close' %}
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress Bar -->
+    <div class="cart-drawer__shipping-bar px-5 py-3 bg-[var(--color-surface)] border-b border-[var(--color-border)]">
+      <div class="text-xs text-center font-medium mb-1.5 text-[var(--color-text)]" id="ShippingBarMessage">
+        Add <span class="font-bold text-[var(--color-accent)]" id="ShippingRemaining">$45.00</span> more to unlock <strong>Complimentary Express Shipping</strong>
+      </div>
+      <div class="w-full h-1.5 bg-neutral-200 rounded-full overflow-hidden">
+        <div class="h-full bg-[var(--color-btn-bg)] transition-all duration-500 rounded-full" id="ShippingProgressBar" style="width: 70%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items Scrollable Body -->
+    <div class="cart-drawer__body flex-1 overflow-y-auto p-5" id="CartDrawerItems">
+      {%- if cart.item_count > 0 -%}
+        <div class="cart-items-list flex flex-col gap-4">
+          {%- for item in cart.items -%}
+            <div class="cart-item flex gap-4 pb-4 border-b border-[var(--color-border)]" data-line-item-key="{{ item.key }}">
+              <a href="{{ item.url }}" class="cart-item__image w-20 aspect-[3/4] shrink-0 bg-neutral-100 rounded overflow-hidden">
+                <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" class="w-full h-full object-cover">
+              </a>
+
+              <div class="cart-item__details flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex justify-between items-start">
+                    <h4 class="text-xs uppercase tracking-wider font-medium">
+                      <a href="{{ item.url }}" class="hover:underline">{{ item.product.title }}</a>
+                    </h4>
+                    <span class="text-xs font-semibold">{{ item.final_line_price | money }}</span>
+                  </div>
+                  {%- unless item.product.has_only_default_variant -%}
+                    <span class="text-[11px] text-muted block mt-0.5">{{ item.variant.title }}</span>
+                  {%- endunless -%}
+                </div>
+
+                <div class="flex items-center justify-between mt-3">
+                  <!-- Quantity Stepper -->
+                  <div class="quantity-stepper flex items-center border border-[var(--color-border)] rounded">
+                    <button type="button" class="px-2 py-0.5 text-xs hover:bg-neutral-100 btn-qty-minus" data-key="{{ item.key }}" data-qty="{{ item.quantity | minus: 1 }}">&minus;</button>
+                    <span class="px-2.5 py-0.5 text-xs font-medium">{{ item.quantity }}</span>
+                    <button type="button" class="px-2 py-0.5 text-xs hover:bg-neutral-100 btn-qty-plus" data-key="{{ item.key }}" data-qty="{{ item.quantity | plus: 1 }}">&plus;</button>
+                  </div>
+
+                  <button type="button" class="text-[11px] text-muted hover:text-red-700 underline btn-cart-remove" data-key="{{ item.key }}">
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="cart-drawer__empty text-center py-16">
+          <p class="text-sm text-muted mb-4">{{ 'cart.general.empty' | t }}</p>
+          <a href="/collections/new-in" class="inline-block px-6 py-3 bg-[var(--color-btn-bg)] text-[var(--color-btn-text)] text-xs uppercase tracking-widest font-medium">
+            {{ 'cart.general.continue_shopping' | t }}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Upsell Recommendation Drawer Section -->
+    <div class="cart-drawer__upsells p-4 bg-[var(--color-surface)] border-t border-[var(--color-border)]">
+      <span class="text-[10px] uppercase tracking-widest text-muted font-bold block mb-2">Complete Your Look</span>
+      <div class="flex items-center gap-3 p-2 bg-[var(--color-bg)] rounded border border-[var(--color-border)]">
+        <div class="w-12 h-12 rounded bg-neutral-200 shrink-0 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover" alt="Leather Belt">
+        </div>
+        <div class="flex-1 min-w-0">
+          <h5 class="text-[11px] font-medium truncate">Italian Nappa Belt</h5>
+          <span class="text-[10px] text-muted">$85.00</span>
+        </div>
+        <button type="button" class="text-[10px] uppercase tracking-wider font-bold px-3 py-1.5 bg-neutral-900 text-white rounded hover:bg-black shrink-0">
+          + Add
+        </button>
+      </div>
+    </div>
+
+    <!-- Drawer Footer (Subtotal & Checkout) -->
+    <div class="cart-drawer__footer p-5 bg-[var(--color-bg)] border-t border-[var(--color-border)]">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-xs uppercase tracking-widest font-medium">{{ 'cart.general.subtotal' | t }}</span>
+        <span class="font-serif text-lg font-semibold" id="CartDrawerSubtotal">{{ cart.total_price | money }}</span>
+      </div>
+      <p class="text-[10px] text-muted mb-4 leading-tight">
+        {{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t }}
+      </p>
+
+      <form action="{{ routes.cart_url }}" method="post">
+        <button 
+          type="submit" 
+          name="checkout" 
+          class="w-full py-4 bg-[var(--color-btn-bg)] text-[var(--color-btn-text)] text-xs uppercase tracking-[0.2em] font-medium hover:opacity-90 transition-opacity shadow-lg"
+        >
+          {{ 'cart.general.checkout' | t }} &rarr;
+        </button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "upsell_title",
+      "label": "Upsell Title",
+      "default": "Pairs Beautifully With"
+    }
+  ]
+}
+{% endschema %}

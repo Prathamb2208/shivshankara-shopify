@@ -1,0 +1,36 @@
+<section class="main-search-section py-16 bg-[var(--color-bg)]">
+  <div class="container mx-auto px-4 lg:px-8 max-w-4xl text-center">
+    <span class="text-xs uppercase tracking-[0.25em] text-muted font-medium block mb-2">Search Catalog</span>
+    <h1 class="font-serif text-3xl sm:text-4xl font-light mb-8">
+      {%- if search.performed -%}
+        Search Results for "{{ search.terms }}"
+      {%- else -%}
+        Search the Collection
+      {%- endif -%}
+    </h1>
+
+    <form action="{{ routes.search_url }}" method="get" class="max-w-md mx-auto mb-12">
+      <div class="flex border-b border-[var(--color-text)] pb-2">
+        <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search dresses, coats, accessories..." class="w-full bg-transparent text-sm focus:outline-none">
+        <button type="submit" class="text-xs uppercase tracking-widest font-semibold ml-2">Search</button>
+      </div>
+    </form>
+
+    {%- if search.performed -%}
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+        {%- for item in search.results -%}
+          {%- if item.object_type == 'product' -%}
+            {% render 'product-card', product: item %}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Search Results",
+  "settings": []
+}
+{% endschema %}

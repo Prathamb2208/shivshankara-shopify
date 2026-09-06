@@ -1,0 +1,61 @@
+{
+  "general": {
+    "accessibility": {
+      "close": "Close",
+      "skip_to_content": "Skip to content"
+    },
+    "currency": {
+      "dropdown_label": "Currency"
+    },
+    "search": {
+      "search": "Search collections, dresses, outerwear...",
+      "submit": "Submit"
+    },
+    "newsletter": {
+      "label": "Enter your email for 15% off your first order",
+      "placeholder": "Your email address",
+      "button": "Join Aurelia Club",
+      "success": "Welcome to Aurelia Club. Check your inbox for your 15% off code."
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable",
+      "pre_order": "Pre-Order",
+      "quick_view": "Quick View",
+      "size_guide": "Size & Fit Guide",
+      "color": "Color",
+      "size": "Size",
+      "quantity": "Quantity",
+      "view_details": "View Product Details",
+      "scarcity_warning": "Only {{ count }} left in stock — order soon",
+      "free_shipping_eligible": "Eligible for Complimentary Express Shipping",
+      "model_stats": "Model is 5'10\" / 178cm and wearing size S"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your Shopping Bag",
+      "empty": "Your shopping bag is currently empty.",
+      "continue_shopping": "Explore New Arrivals",
+      "subtotal": "Subtotal",
+      "checkout": "Proceed to Checkout",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes, duties, and shipping calculated at checkout.",
+      "free_shipping_threshold_html": "Add <span>{{ remaining_amount }}</span> more for <strong>Free Worldwide Shipping</strong>",
+      "free_shipping_unlocked": "Congratulations! You've unlocked <strong>Free Worldwide Shipping</strong>!",
+      "upsell_title": "Complete The Look"
+    }
+  },
+  "sections": {
+    "header": {
+      "announcement": "Complimentary Worldwide Express Shipping on Orders Over $150 • Free 30-Day Returns"
+    },
+    "collection": {
+      "filter_by": "Filter By",
+      "sort_by": "Sort By",
+      "products_count": "{{ count }} pieces"
+    }
+  }
+}

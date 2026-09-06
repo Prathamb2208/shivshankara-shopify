@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main_cart": {
+      "type": "cart-drawer",
+      "settings": {
+        "upsell_title": "Pairs Beautifully With"
+      }
+    }
+  },
+  "order": [
+    "main_cart"
+  ]
+}

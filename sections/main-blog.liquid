@@ -1,0 +1,27 @@
+<section class="main-blog-section py-16 bg-[var(--color-bg)]">
+  <div class="container mx-auto px-4 lg:px-8 text-center max-w-3xl">
+    <span class="text-xs uppercase tracking-[0.25em] text-muted font-medium block mb-2">Editorial Dispatches</span>
+    <h1 class="font-serif text-3xl sm:text-5xl font-light mb-8">{{ blog.title | default: 'The Journal' }}</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+      {%- for article in blog.articles -%}
+        <article class="blog-card flex flex-col gap-3">
+          {%- if article.image -%}
+            <div class="aspect-[16/10] overflow-hidden rounded bg-neutral-100">
+              <img src="{{ article.image | image_url: width: 600 }}" alt="{{ article.title }}" class="w-full h-full object-cover">
+            </div>
+          {%- endif -%}
+          <span class="text-[10px] uppercase tracking-wider text-muted">{{ article.published_at | date: '%B %d, %Y' }}</span>
+          <h2 class="font-serif text-xl font-normal hover:underline"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blog Posts",
+  "settings": []
+}
+{% endschema %}

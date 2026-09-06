@@ -1,0 +1,41 @@
+{
+  "current": {
+    "color_background": "#FBF9F5",
+    "color_surface": "#FFFFFF",
+    "color_text": "#171513",
+    "color_muted_text": "#706B65",
+    "color_border": "#E8E2D9",
+    "color_primary_btn_bg": "#171513",
+    "color_primary_btn_text": "#FFFFFF",
+    "color_accent": "#8E735B",
+    "color_sale_badge": "#A8422B",
+    "heading_letter_spacing": "wide",
+    "enable_cart_drawer": true,
+    "enable_free_shipping_bar": true,
+    "free_shipping_threshold": 150,
+    "cart_upsell_heading": "Pairs Beautifully With",
+    "show_secondary_image_on_hover": true,
+    "show_color_swatches": true,
+    "show_quick_add": true,
+    "social_instagram_link": "https://instagram.com",
+    "social_tiktok_link": "https://tiktok.com",
+    "social_pinterest_link": "https://pinterest.com"
+  },
+  "presets": {
+    "Default": {
+      "color_background": "#FBF9F5",
+      "color_surface": "#FFFFFF",
+      "color_text": "#171513",
+      "color_muted_text": "#706B65",
+      "color_border": "#E8E2D9",
+      "color_primary_btn_bg": "#171513",
+      "color_primary_btn_text": "#FFFFFF",
+      "color_accent": "#8E735B",
+      "color_sale_badge": "#A8422B",
+      "heading_letter_spacing": "wide",
+      "enable_cart_drawer": true,
+      "enable_free_shipping_bar": true,
+      "free_shipping_threshold": 150
+    }
+  }
+}

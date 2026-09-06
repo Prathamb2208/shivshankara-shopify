@@ -1,0 +1,209 @@
+<section class="main-product-section py-8 lg:py-16 bg-[var(--color-bg)]" data-section-id="{{ section.id }}">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+      
+      <!-- Product Media Gallery (7 cols on desktop) -->
+      <div class="lg:col-span-7">
+        <div class="product-gallery grid grid-cols-1 sm:grid-cols-2 gap-3" id="ProductGallery">
+          {%- if product.media.size > 0 -%}
+            {%- for media in product.media -%}
+              <div class="product-gallery__item aspect-[3/4] bg-neutral-100 rounded overflow-hidden cursor-zoom-in" data-media-id="{{ media.id }}">
+                <img 
+                  src="{{ media | image_url: width: 1200 }}" 
+                  alt="{{ media.alt | default: product.title | escape }}"
+                  class="w-full h-full object-cover"
+                  loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                  width="800"
+                  height="1066"
+                >
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            <!-- Fallback Mock Gallery -->
+            <div class="product-gallery__item aspect-[3/4] bg-neutral-100 rounded overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover" alt="Fashion item">
+            </div>
+            <div class="product-gallery__item aspect-[3/4] bg-neutral-100 rounded overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover" alt="Fashion item detail">
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Product Form & Details (5 cols on desktop, sticky) -->
+      <div class="lg:col-span-5">
+        <div class="product-info-sticky sticky top-28 flex flex-col gap-6">
+          
+          <!-- Title & Pricing -->
+          <div>
+            {%- if product.vendor != blank -%}
+              <span class="text-xs uppercase tracking-[0.25em] text-muted font-medium block mb-1">
+                {{ product.vendor }}
+              </span>
+            {%- endif -%}
+
+            <h1 class="font-serif text-3xl sm:text-4xl font-normal tracking-tight text-[var(--color-text)] mb-3">
+              {{ product.title | default: 'Bias-Cut Mulberry Silk Slip Gown' }}
+            </h1>
+
+            <div class="product-price-wrapper text-lg">
+              {% render 'price', product: product, use_variant: true, show_badges: true %}
+            </div>
+          </div>
+
+          <!-- Product Form -->
+          {% form 'product', product, id: 'ProductForm', class: 'product-form flex flex-col gap-5' %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="SelectedVariantId">
+
+            <!-- Color Swatch Picker -->
+            {% for option in product.options_with_values %}
+              {% assign option_name = option.name | downcase %}
+              {% if option_name contains 'color' or option_name contains 'colour' %}
+                <div class="product-option-block">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs uppercase tracking-wider font-medium text-[var(--color-text)]">
+                      Color: <span class="font-normal text-muted" id="SelectedColorLabel">{{ option.selected_value }}</span>
+                    </span>
+                  </div>
+                  {% render 'color-swatches', product: product, option: option, is_pdp: true %}
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            <!-- Size Picker with Size Guide Trigger -->
+            {% for option in product.options_with_values %}
+              {% assign option_name = option.name | downcase %}
+              {% if option_name contains 'size' %}
+                <div class="product-option-block">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs uppercase tracking-wider font-medium text-[var(--color-text)]">
+                      Size: <span class="font-normal text-muted" id="SelectedSizeLabel">{{ option.selected_value }}</span>
+                    </span>
+                    <button type="button" class="text-xs uppercase tracking-wider text-muted hover:text-[var(--color-text)] underline cursor-pointer" data-modal-open="SizeGuideModal">
+                      {{ 'products.product.size_guide' | t }}
+                    </button>
+                  </div>
+                  
+                  <div class="size-pill-selector flex items-center gap-2 flex-wrap">
+                    {% for value in option.values %}
+                      <label class="size-pill-option cursor-pointer">
+                        <input 
+                          type="radio" 
+                          name="option-{{ option.position }}" 
+                          value="{{ value | escape }}" 
+                          {% if option.selected_value == value or forloop.first %}checked{% endif %}
+                          class="visually-hidden size-input"
+                        >
+                        <span class="size-box block min-w-[44px] h-10 px-3 text-center leading-10 text-xs font-medium border border-[var(--color-border)] transition-all">
+                          {{ value }}
+                        </span>
+                      </label>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            <!-- Scarcity / Stock Alert -->
+            <div class="stock-scarcity-alert flex items-center gap-2 text-xs text-amber-800 bg-amber-50/80 p-2.5 rounded border border-amber-200">
+              <span class="w-2 h-2 rounded-full bg-amber-600 animate-pulse"></span>
+              <span>Low Stock: Only 3 remaining in selected size</span>
+            </div>
+
+            <!-- Add to Cart & Fast Checkout -->
+            <div class="flex flex-col gap-2.5 pt-2">
+              <button 
+                type="submit" 
+                name="add" 
+                class="btn-add-to-cart w-full py-4 bg-[var(--color-btn-bg)] text-[var(--color-btn-text)] text-xs uppercase tracking-[0.2em] font-medium hover:opacity-90 transition-opacity shadow-lg"
+                {% unless product.available %}disabled{% endunless %}
+              >
+                {%- if product.available -%}
+                  {{ 'products.product.add_to_cart' | t }} &bull; {{ product.price | money }}
+                {%- else -%}
+                  {{ 'products.product.sold_out' | t }}
+                {%- endif -%}
+              </button>
+
+              <button 
+                type="button" 
+                class="btn-buy-now w-full py-4 bg-[#EDE8E1] text-[var(--color-text)] text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#E3DDD4] transition-colors"
+              >
+                Instant Buy with Shop Pay
+              </button>
+            </div>
+
+            <!-- Model Measurement & Fit Note -->
+            <div class="model-fit-note text-xs text-muted font-light pt-2 flex items-center gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span>Fit: Model is 5'10" / 178cm, wearing Size S. Runs true to size.</span>
+            </div>
+          {% endform %}
+
+          <!-- Accordion Collapsible Sections -->
+          <div class="product-accordions border-t border-[var(--color-border)] pt-4 flex flex-col divide-y divide-[var(--color-border)]">
+            
+            <!-- Tab 1: Description -->
+            <details class="accordion-item py-3.5 group cursor-pointer" open>
+              <summary class="flex justify-between items-center text-xs uppercase tracking-widest font-medium list-none">
+                <span>The Silhouette & Details</span>
+                <span class="transition-transform group-open:rotate-180">&darr;</span>
+              </summary>
+              <div class="pt-3 text-xs text-muted font-light leading-relaxed">
+                {{ product.description | default: '<p>Constructed from 22-momme Mulberry silk, cut on the bias to gently skim the contours of the body. Features ultra-fine rouleau straps, subtle bust darts, and a floor-skimming hemline designed for effortless movement.</p>' }}
+              </div>
+            </details>
+
+            <!-- Tab 2: Materials & Care -->
+            <details class="accordion-item py-3.5 group cursor-pointer">
+              <summary class="flex justify-between items-center text-xs uppercase tracking-widest font-medium list-none">
+                <span>Fabric & Artisanal Care</span>
+                <span class="transition-transform group-open:rotate-180">&darr;</span>
+              </summary>
+              <div class="pt-3 text-xs text-muted font-light leading-relaxed flex flex-col gap-1.5">
+                <p>&bull; 100% Grade 6A Mulberry Silk</p>
+                <p>&bull; OEKO-TEX® Standard 100 Certified dyes</p>
+                <p>&bull; Dry clean recommended or hand wash cold with silk detergent</p>
+                <p>&bull; Made in our partner atelier in Como, Italy</p>
+              </div>
+            </details>
+
+            <!-- Tab 3: Shipping & Returns -->
+            <details class="accordion-item py-3.5 group cursor-pointer">
+              <summary class="flex justify-between items-center text-xs uppercase tracking-widest font-medium list-none">
+                <span>Complimentary Delivery & Returns</span>
+                <span class="transition-transform group-open:rotate-180">&darr;</span>
+              </summary>
+              <div class="pt-3 text-xs text-muted font-light leading-relaxed flex flex-col gap-1.5">
+                <p>&bull; Express Shipping: 2-3 business days</p>
+                <p>&bull; Free worldwide delivery on orders over $150</p>
+                <p>&bull; Generous 30-day return window with prepaid shipping labels</p>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Information",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_info",
+      "label": "Enable Sticky Product Info on Desktop",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
