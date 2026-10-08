@@ -16,8 +16,8 @@
             >
           {%- else -%}
             <img 
-              src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1200&auto=format&fit=crop" 
-              alt="Atelier Craftsmanship"
+              src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1200&auto=format&fit=crop" 
+              alt="ShivShankara Jaipur Block Print Craftsmanship"
               class="w-full h-full object-cover object-center"
               loading="lazy"
               width="800"
@@ -26,9 +26,9 @@
           {%- endif -%}
 
           <!-- Floating Atelier Badge -->
-          <div class="absolute bottom-6 right-6 p-4 bg-white/95 backdrop-blur-md border border-neutral-200 rounded shadow-xl text-center max-w-[160px]">
-            <span class="block text-[10px] uppercase tracking-widest text-muted">Provenance</span>
-            <span class="font-serif text-sm font-normal text-neutral-900 block mt-0.5">Como Silk & Biella Wool</span>
+          <div class="absolute bottom-6 right-6 p-4 bg-white/95 backdrop-blur-md border border-neutral-200 rounded shadow-xl text-center max-w-[170px]">
+            <span class="block text-[10px] uppercase tracking-widest text-[#C5A059] font-semibold">Provenance</span>
+            <span class="font-['Outfit',sans-serif] text-xs font-semibold text-neutral-900 block mt-0.5">Jaipur Block Printing</span>
           </div>
         </div>
       </div>
@@ -36,12 +36,12 @@
       <!-- Text Column -->
       <div class="lg:col-span-6 {% if section.settings.layout == 'image_second' %}lg:order-1{% endif %}">
         {%- if section.settings.subheading != blank -%}
-          <span class="text-xs uppercase tracking-[0.25em] text-muted font-medium block mb-3">
+          <span class="text-xs uppercase tracking-[0.25em] text-[#C5A059] font-semibold block mb-3">
             {{ section.settings.subheading }}
           </span>
         {%- endif -%}
 
-        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight leading-tight mb-6">
+        <h2 class="font-['Outfit',sans-serif] text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-6 text-[var(--color-text)]">
           {{ section.settings.title }}
         </h2>
 
@@ -52,21 +52,21 @@
         <!-- Trust / Craftsmanship Badges -->
         <div class="grid grid-cols-3 gap-4 pt-6 border-t border-[var(--color-border)] mb-8">
           <div>
-            <span class="block font-serif text-2xl font-light text-[var(--color-text)]">100%</span>
-            <span class="text-[11px] uppercase tracking-wider text-muted font-medium">Traceable Silks</span>
+            <span class="block font-['Outfit',sans-serif] text-2xl font-bold text-[#C5A059]">100%</span>
+            <span class="text-[11px] uppercase tracking-wider text-muted font-medium">Pure Cotton & Linen</span>
           </div>
           <div>
-            <span class="block font-serif text-2xl font-light text-[var(--color-text)]">0 Waste</span>
-            <span class="text-[11px] uppercase tracking-wider text-muted font-medium">Pattern Cutting</span>
+            <span class="block font-['Outfit',sans-serif] text-2xl font-bold text-[#C5A059]">Azo-Free</span>
+            <span class="text-[11px] uppercase tracking-wider text-muted font-medium">Safe Organic Dyes</span>
           </div>
           <div>
-            <span class="block font-serif text-2xl font-light text-[var(--color-text)]">Milanese</span>
-            <span class="text-[11px] uppercase tracking-wider text-muted font-medium">Tailoring Guild</span>
+            <span class="block font-['Outfit',sans-serif] text-2xl font-bold text-[#C5A059]">Jaipur</span>
+            <span class="text-[11px] uppercase tracking-wider text-muted font-medium">Artisan Guild</span>
           </div>
         </div>
 
         {%- if section.settings.button_label != blank -%}
-          <a href="{{ section.settings.button_link }}" class="inline-flex items-center gap-3 px-7 py-3.5 bg-[var(--color-btn-bg)] text-[var(--color-btn-text)] text-xs uppercase tracking-[0.2em] font-medium hover:opacity-90 transition-opacity">
+          <a href="{{ section.settings.button_link }}" class="inline-flex items-center gap-3 px-7 py-3.5 bg-[#121210] hover:bg-[#C5A059] text-white text-xs uppercase tracking-[0.2em] font-semibold rounded-xs transition-colors">
             <span>{{ section.settings.button_label }}</span>
             <span>&rarr;</span>
           </a>
@@ -100,25 +100,25 @@
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
-      "default": "The Philosophy"
+      "default": "The Jaipur Heritage"
     },
     {
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "Thoughtful Design, Uncompromising Form"
+      "default": "Rooted in Jaipur Heritage, Tailored for Modern Living"
     },
     {
       "type": "richtext",
       "id": "text",
       "label": "Text",
-      "default": "<p>Every Aurelia garment begins with tactile exploration. We collaborate with centuries-old European textile mills to source Mulberry silks, recycled double-faced cashmere, and deadstock twill.</p><p>Crafted to be worn on repeat, each silhouette honors feminine ease without sacrificing architectural structure.</p>"
+      "default": "<p>Every ShivShankara piece begins with hand-carved teakwood blocks and natural dyes in the historic artisan clusters of Rajasthan.</p><p>We preserve generational block-print artistry while designing effortless, breathable silhouettes for everyday elegance and festive celebrations.</p>"
     },
     {
       "type": "text",
       "id": "button_label",
       "label": "Button Label",
-      "default": "Read Atelier Story"
+      "default": "Discover Our Craft"
     },
     {
       "type": "url",

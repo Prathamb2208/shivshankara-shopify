@@ -3,13 +3,15 @@
     "hero_banner": {
       "type": "hero-banner",
       "settings": {
-        "subheading": "Autumn / Winter 2026 Collection",
-        "heading": "Silhouettes Born from Quiet Confidence",
-        "text": "Sculpted tailoring, fluid silk slip silhouettes, and organic virgin wool coats crafted for the modern muse.",
-        "button_label_1": "Shop New Arrivals",
-        "button_link_1": "/collections/new-in",
+        "layout_style": "collage",
+        "subheading": "SHIVSHANKARA ARTISAN EDIT",
+        "heading": "THE ARTISAN FUSION",
+        "text": "Hand-crafted in Jaipur — where timeless block-print craft meets contemporary silhouettes.",
+        "button_label_1": "Shop Women's Wear",
+        "button_link_1": "/collections/kurtis",
         "button_label_2": "Explore Lookbook",
         "button_link_2": "/pages/lookbook",
+        "trust_text": "100% Pure Cotton • Authentic Hand Block Print • Jaipur Craft",
         "overlay_opacity": 35
       }
     },
@@ -19,45 +21,45 @@
         "cat_1": {
           "type": "category",
           "settings": {
-            "title": "Dresses & Silks",
-            "link": "/collections/dresses"
+            "title": "Kurtas & Kurtis",
+            "link": "/collections/kurtis"
           }
         },
         "cat_2": {
           "type": "category",
           "settings": {
-            "title": "Coats & Tailored Blazers",
-            "link": "/collections/outerwear"
+            "title": "Co-ord Sets",
+            "link": "/collections/co-ord-sets"
           }
         },
         "cat_3": {
           "type": "category",
           "settings": {
-            "title": "Cashmere & Knitwear",
-            "link": "/collections/knitwear"
+            "title": "Ethnic Festive Sets",
+            "link": "/collections/ethnic-sets"
           }
         },
         "cat_4": {
           "type": "category",
           "settings": {
-            "title": "Artisanal Accessories",
-            "link": "/collections/accessories"
+            "title": "Linen & Cotton Dresses",
+            "link": "/collections/dresses"
           }
         }
       },
       "block_order": ["cat_1", "cat_2", "cat_3", "cat_4"],
       "settings": {
         "subheading": "Curated Departments",
-        "title": "Shop By Category"
+        "title": "Explore By Category"
       }
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "subheading": "Carefully Curated",
-        "title": "The New Season Edit",
+        "subheading": "Handcrafted Creations",
+        "title": "The Jaipur Season Edit",
         "products_to_show": 8,
-        "view_all_label": "View Complete Edit"
+        "view_all_label": "View Complete Collection"
       }
     },
     "lookbook": {
@@ -66,7 +68,7 @@
         "pin_1": {
           "type": "hotspot",
           "settings": {
-            "custom_title": "Virgin Wool Overcoat",
+            "custom_title": "Indigo Hand-Block Anarkali Kurta",
             "pin_x": 48,
             "pin_y": 30
           }
@@ -74,7 +76,7 @@
         "pin_2": {
           "type": "hotspot",
           "settings": {
-            "custom_title": "Bias-Cut Silk Slip Dress",
+            "custom_title": "Handcrafted Jaipur Co-ord Set",
             "pin_x": 52,
             "pin_y": 55
           }
@@ -82,7 +84,7 @@
         "pin_3": {
           "type": "hotspot",
           "settings": {
-            "custom_title": "Sculpted Nappa Shoulder Bag",
+            "custom_title": "Pure Cotton Dupatta",
             "pin_x": 35,
             "pin_y": 68
           }
@@ -90,18 +92,18 @@
       },
       "block_order": ["pin_1", "pin_2", "pin_3"],
       "settings": {
-        "subheading": "Shop The Look",
-        "heading": "The Art of Effortless Layering",
-        "text": "Discover our stylist-curated ensemble. Designed to transition seamlessly from morning atelier appointments to twilight vernissages."
+        "subheading": "#ShivShankara Community Lookbook",
+        "heading": "The Art of Rajasthani Drape & Block Print",
+        "text": "Explore how our patrons style effortless pure cotton ensembles from daytime coffee dates to celebratory festive evenings."
       }
     },
     "image_with_text": {
       "type": "image-with-text",
       "settings": {
-        "subheading": "The Philosophy",
-        "title": "Thoughtful Design, Uncompromising Form",
+        "subheading": "The Jaipur Heritage",
+        "title": "Rooted in Jaipur Heritage, Tailored for Modern Living",
         "layout": "image_first",
-        "button_label": "Read Atelier Story",
+        "button_label": "Discover Our Craft",
         "button_link": "/pages/about"
       }
     },
@@ -109,9 +111,9 @@
       "type": "newsletter",
       "settings": {
         "subheading": "Privileged Access",
-        "title": "Enter the Aurelia Circle",
-        "text": "Enjoy 15% off your inaugural order, priority access to capsule drops, and private salon invites.",
-        "button_label": "Subscribe"
+        "title": "Join The ShivShankara Circle",
+        "text": "Receive 10% off your inaugural order, priority access to artisan capsule drops, and private festive collections.",
+        "button_label": "Join Circle"
       }
     }
   },

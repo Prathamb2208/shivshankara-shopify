@@ -7,14 +7,14 @@
             {{ section.settings.subheading }}
           </span>
         {%- endif -%}
-        <h2 class="font-serif text-3xl lg:text-4xl font-normal tracking-tight">
+        <h2 class="font-['Outfit',sans-serif] text-3xl lg:text-4xl font-bold tracking-tight text-[var(--color-text)]">
           {{ section.settings.title }}
         </h2>
       </div>
 
       <div class="mt-4 md:mt-0">
-        <a href="{{ section.settings.collection.url | default: '/collections/all' }}" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-medium hover:text-[var(--color-accent)] transition-colors">
-          <span>{{ section.settings.view_all_label | default: 'View Complete Edit' }}</span>
+        <a href="{{ section.settings.collection.url | default: '/collections/all' }}" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-[#C5A059] hover:text-[#A58039] transition-colors">
+          <span>{{ section.settings.view_all_label | default: 'View Complete Collection' }}</span>
           <span>&rarr;</span>
         </a>
       </div>
@@ -28,15 +28,36 @@
           {% render 'product-card', product: product, show_secondary_image: true %}
         {%- endfor -%}
       {%- else -%}
-        <!-- Onboarding Placeholders when no products are uploaded yet -->
+        <!-- Curated ShivShankara Catalog Preview Placeholders -->
+        {%- assign sample_titles = "Indigo Hand-Block Anarkali Kurta,Sartorial Belgian Linen Shirt,Muted Sage Cotton Tiered Dress,Tussar Silk Textured Kurta,Handcrafted Jaipur Co-ord Set,Celebration 3-Piece Festive Set,Sanganeri Pure Cotton Kurti,Double-Gauze Resort Tunic" | split: "," -%}
+        {%- assign sample_prices = "₹799,₹799,₹799,₹799,₹999,₹1,499,₹699,₹849" | split: "," -%}
+        {%- assign sample_msrps = "₹2,999,₹3,499,₹3,999,₹4,999,₹3,299,₹4,499,₹2,499,₹2,799" | split: "," -%}
+        {%- assign sample_images = "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800,https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800,https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800,https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800,https://kjmjeoaipojzyrxshvzo.supabase.co/storage/v1/object/public/product-images/SD836_S/SD836_S_1.jpg,https://kjmjeoaipojzyrxshvzo.supabase.co/storage/v1/object/public/product-images/SD687_KBD/SD687_KBD_1.jpg,https://kjmjeoaipojzyrxshvzo.supabase.co/storage/v1/object/public/product-images/SD1022_KB/SD1022_KB_1.jpg,https://kjmjeoaipojzyrxshvzo.supabase.co/storage/v1/object/public/product-images/SD794_KB/SD794_KB_2.jpg" | split: "," -%}
+
         {%- for i in (1..section.settings.products_to_show) -%}
-          <div class="product-card onboarding-card">
-            <div class="aspect-[3/4] bg-neutral-200 flex items-center justify-center text-muted text-xs uppercase tracking-wider">
-              <span>Sample Product {{ i }}</span>
+          {%- assign idx = forloop.index0 | modulo: 8 -%}
+          <div class="product-card group relative">
+            <div class="aspect-[3/4] bg-neutral-100 overflow-hidden rounded-xs relative">
+              <img 
+                src="{{ sample_images[idx] }}" 
+                alt="{{ sample_titles[idx] }}" 
+                class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                loading="lazy"
+                width="600"
+                height="800"
+              >
+              <span class="absolute top-2.5 left-2.5 px-2 py-0.5 text-[9px] font-semibold tracking-wider uppercase bg-[#B84A39] text-white">
+                SAVE 70%+
+              </span>
             </div>
             <div class="pt-3">
-              <h3 class="text-sm font-normal">Aurelia Signature Piece {{ i }}</h3>
-              <div class="text-xs text-muted mt-1">$195.00</div>
+              <h3 class="font-['Outfit',sans-serif] text-sm font-medium text-[var(--color-text)] truncate group-hover:text-[#C5A059] transition-colors">
+                {{ sample_titles[idx] }}
+              </h3>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="text-sm font-semibold text-[var(--color-text)]">{{ sample_prices[idx] }}</span>
+                <span class="text-xs text-neutral-400 line-through">{{ sample_msrps[idx] }}</span>
+              </div>
             </div>
           </div>
         {%- endfor -%}
@@ -53,13 +74,13 @@
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Carefully Curated"
+      "default": "Handcrafted Creations"
     },
     {
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "The New Season Edit"
+      "default": "The Jaipur Season Edit"
     },
     {
       "type": "collection",

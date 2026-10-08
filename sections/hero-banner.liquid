@@ -1,63 +1,181 @@
-<section class="hero-banner relative overflow-hidden bg-neutral-900 text-white min-h-[75vh] lg:min-h-[85vh] flex items-center">
-  <!-- Background Image with Overlay -->
-  <div class="hero-banner__bg absolute inset-0 z-0">
-    {%- if section.settings.image != blank -%}
-      <img 
-        src="{{ section.settings.image | image_url: width: 2000 }}" 
-        alt="{{ section.settings.heading | escape }}"
-        class="w-full h-full object-cover object-center scale-105 animate-subtle-zoom"
-        loading="eager"
-        width="2000"
-        height="1200"
-      >
-    {%- else -%}
-      <img 
-        src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop" 
-        alt="Aurelia Women's Fashion Editorial"
-        class="w-full h-full object-cover object-center"
-        loading="eager"
-        width="2000"
-        height="1200"
-      >
-    {%- endif -%}
-    <div class="hero-banner__overlay absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/20" style="opacity: {{ section.settings.overlay_opacity }}%;"></div>
-  </div>
+<section class="hero-banner relative overflow-hidden bg-[#121210] text-white min-h-[75vh] lg:min-h-[85vh] flex items-center" id="Hero-{{ section.id }}">
 
-  <!-- Hero Content -->
-  <div class="container mx-auto px-6 lg:px-12 relative z-10 py-16 lg:py-24 max-w-4xl text-center md:text-left">
-    {%- if section.settings.subheading != blank -%}
-      <span class="inline-block text-xs uppercase tracking-[0.3em] font-medium mb-4 text-[#C8B9A6] drop-shadow-sm">
-        {{ section.settings.subheading }}
-      </span>
-    {%- endif -%}
+  {%- if section.settings.layout_style == 'collage' -%}
+    <!-- ShivShankara Signature 4-Image Artisan Collage Layout -->
+    <div class="hero-collage-container absolute inset-0 z-0 flex justify-end">
+      <div class="hero-collage w-full lg:w-[54%] h-full grid grid-cols-2 grid-rows-2 gap-1 p-1 opacity-90 lg:opacity-100">
+        <!-- Collage Slot 1 -->
+        <div class="relative overflow-hidden group">
+          {%- if section.settings.image_1 != blank -%}
+            <img 
+              src="{{ section.settings.image_1 | image_url: width: 900 }}" 
+              alt="{{ section.settings.heading | escape }} - 1"
+              class="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
+              loading="eager"
+              width="600"
+              height="600"
+            >
+          {%- else -%}
+            <img 
+              src="https://kjmjeoaipojzyrxshvzo.supabase.co/storage/v1/object/public/product-images/SD1025_KB/SD1025_KB_1.jpg" 
+              alt="ShivShankara Jaipur Block Print Kurti"
+              class="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
+              loading="eager"
+              width="600"
+              height="600"
+            >
+          {%- endif -%}
+        </div>
 
-    <h1 class="font-serif text-4xl sm:text-5xl lg:text-7xl font-light tracking-tight leading-[1.08] mb-6 drop-shadow-md">
-      {{ section.settings.heading }}
-    </h1>
+        <!-- Collage Slot 2 -->
+        <div class="relative overflow-hidden group">
+          {%- if section.settings.image_2 != blank -%}
+            <img 
+              src="{{ section.settings.image_2 | image_url: width: 900 }}" 
+              alt="{{ section.settings.heading | escape }} - 2"
+              class="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
+              loading="eager"
+              width="600"
+              height="600"
+            >
+          {%- else -%}
+            <img 
+              src="https://kjmjeoaipojzyrxshvzo.supabase.co/storage/v1/object/public/product-images/SD963_KB/SD963_KB_3.jpg" 
+              alt="ShivShankara Artisan Silhouette"
+              class="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
+              loading="eager"
+              width="600"
+              height="600"
+            >
+          {%- endif -%}
+        </div>
 
-    {%- if section.settings.text != blank -%}
-      <p class="text-sm sm:text-base lg:text-lg text-neutral-200 font-light max-w-xl mb-8 leading-relaxed">
-        {{ section.settings.text }}
-      </p>
-    {%- endif -%}
+        <!-- Collage Slot 3 -->
+        <div class="relative overflow-hidden group">
+          {%- if section.settings.image_3 != blank -%}
+            <img 
+              src="{{ section.settings.image_3 | image_url: width: 900 }}" 
+              alt="{{ section.settings.heading | escape }} - 3"
+              class="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
+              loading="eager"
+              width="600"
+              height="600"
+            >
+          {%- else -%}
+            <img 
+              src="https://kjmjeoaipojzyrxshvzo.supabase.co/storage/v1/object/public/product-images/SD800_KB/SD800_KB_1.jpg" 
+              alt="ShivShankara Handcrafted Cotton"
+              class="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
+              loading="eager"
+              width="600"
+              height="600"
+            >
+          {%- endif -%}
+        </div>
 
-    <div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
-      {%- if section.settings.button_label_1 != blank -%}
-        <a 
-          href="{{ section.settings.button_link_1 }}" 
-          class="btn-primary w-full sm:w-auto px-8 py-4 bg-white text-black text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#F3EFEA] transition-all duration-300 shadow-xl"
+        <!-- Collage Slot 4 -->
+        <div class="relative overflow-hidden group">
+          {%- if section.settings.image_4 != blank -%}
+            <img 
+              src="{{ section.settings.image_4 | image_url: width: 900 }}" 
+              alt="{{ section.settings.heading | escape }} - 4"
+              class="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
+              loading="eager"
+              width="600"
+              height="600"
+            >
+          {%- else -%}
+            <img 
+              src="https://kjmjeoaipojzyrxshvzo.supabase.co/storage/v1/object/public/product-images/SD857_KB/SD857_KB_1.jpg" 
+              alt="ShivShankara Sanganeri Print Details"
+              class="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
+              loading="eager"
+              width="600"
+              height="600"
+            >
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Luxury Vignette and Atmospheric Blend Overlay -->
+      <div class="hero-overlay-blend absolute inset-0 bg-gradient-to-r from-[#121210] via-[#121210]/80 to-transparent lg:w-[60%] pointer-events-none"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#121210] via-transparent to-[#121210]/40 pointer-events-none"></div>
+    </div>
+
+  {%- else -%}
+    <!-- Full-Width Single Banner Layout -->
+    <div class="hero-banner__bg absolute inset-0 z-0">
+      {%- if section.settings.image != blank -%}
+        <img 
+          src="{{ section.settings.image | image_url: width: 2000 }}" 
+          alt="{{ section.settings.heading | escape }}"
+          class="w-full h-full object-cover object-center scale-102 transition-transform duration-1000"
+          loading="eager"
+          width="2000"
+          height="1200"
         >
-          {{ section.settings.button_label_1 }}
-        </a>
+      {%- else -%}
+        <img 
+          src="https://kjmjeoaipojzyrxshvzo.supabase.co/storage/v1/object/public/product-images/SD1025_KB/SD1025_KB_1.jpg" 
+          alt="ShivShankara Women's Block Print Kurti"
+          class="w-full h-full object-cover object-center"
+          loading="eager"
+          width="2000"
+          height="1200"
+        >
+      {%- endif -%}
+      <div class="hero-banner__overlay absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/30" style="opacity: {{ section.settings.overlay_opacity }}%;"></div>
+    </div>
+  {%- endif -%}
+
+  <!-- Editorial Hero Content -->
+  <div class="container mx-auto px-6 lg:px-12 relative z-10 py-16 lg:py-24 max-w-5xl">
+    <div class="max-w-xl text-center md:text-left">
+      {%- if section.settings.subheading != blank -%}
+        <div class="inline-flex items-center gap-2 mb-4">
+          <span class="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse"></span>
+          <span class="text-xs uppercase tracking-[0.3em] font-semibold text-[#C5A059]">
+            {{ section.settings.subheading }}
+          </span>
+        </div>
       {%- endif -%}
 
-      {%- if section.settings.button_label_2 != blank -%}
-        <a 
-          href="{{ section.settings.button_link_2 }}" 
-          class="btn-secondary w-full sm:w-auto px-8 py-4 border border-white/80 text-white text-xs uppercase tracking-[0.2em] font-medium hover:bg-white/15 transition-all duration-300 backdrop-blur-xs"
-        >
-          {{ section.settings.button_label_2 }}
-        </a>
+      <h1 class="font-['Outfit',sans-serif] text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-5 text-white drop-shadow-md">
+        {{ section.settings.heading }}
+      </h1>
+
+      {%- if section.settings.text != blank -%}
+        <p class="text-sm sm:text-base lg:text-lg text-neutral-200 font-light max-w-lg mb-8 leading-relaxed">
+          {{ section.settings.text }}
+        </p>
+      {%- endif -%}
+
+      <!-- Call to Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+        {%- if section.settings.button_label_1 != blank -%}
+          <a 
+            href="{{ section.settings.button_link_1 }}" 
+            class="w-full sm:w-auto px-8 py-4 bg-[#C5A059] hover:bg-[#A58039] text-white text-xs uppercase tracking-[0.2em] font-semibold rounded-xs shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 text-center"
+          >
+            {{ section.settings.button_label_1 }} &rarr;
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.button_label_2 != blank -%}
+          <a 
+            href="{{ section.settings.button_link_2 }}" 
+            class="w-full sm:w-auto px-8 py-4 border border-white/60 hover:border-white text-white text-xs uppercase tracking-[0.2em] font-medium rounded-xs hover:bg-white/10 transition-all duration-300 backdrop-blur-xs text-center"
+          >
+            {{ section.settings.button_label_2 }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.trust_text != blank -%}
+        <div class="mt-8 pt-6 border-t border-white/10 flex items-center gap-4 text-[11px] text-neutral-400 tracking-wider uppercase font-medium">
+          <svg class="w-4 h-4 text-[#C5A059]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          <span>{{ section.settings.trust_text }}</span>
+        </div>
       {%- endif -%}
     </div>
   </div>
@@ -67,6 +185,97 @@
 {
   "name": "Hero Banner",
   "settings": [
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "Hero Layout Style",
+      "options": [
+        {
+          "value": "collage",
+          "label": "Artisan 4-Grid Collage (ShivShankara Signature)"
+        },
+        {
+          "value": "full_width",
+          "label": "Full-Bleed Single Banner"
+        }
+      ],
+      "default": "collage"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Eyebrow / Subheading",
+      "default": "SHIVSHANKARA ARTISAN EDIT"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "THE ARTISAN FUSION"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Body Description",
+      "default": "Hand-crafted in Jaipur — where timeless block-print craft meets contemporary silhouettes."
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Primary Button Label",
+      "default": "Shop Women's Wear"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "Primary Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Secondary Button Label",
+      "default": "Explore Lookbook"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "trust_text",
+      "label": "Trust Badge Text",
+      "default": "100% Pure Cotton • Authentic Hand Block Print • Jaipur Craft"
+    },
+    {
+      "type": "header",
+      "content": "Artisan Collage Images (When Collage Layout is selected)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Collage Photo 1 (Top Left)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Collage Photo 2 (Top Right)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Collage Photo 3 (Bottom Left)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Collage Photo 4 (Bottom Right)"
+    },
+    {
+      "type": "header",
+      "content": "Single Banner Settings (When Full-Bleed is selected)"
+    },
     {
       "type": "image_picker",
       "id": "image",
@@ -81,46 +290,6 @@
       "unit": "%",
       "label": "Dark Overlay Opacity",
       "default": 35
-    },
-    {
-      "type": "text",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "Autumn / Winter 2026 Collection"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Silhouettes Born from Quiet Confidence"
-    },
-    {
-      "type": "textarea",
-      "id": "text",
-      "label": "Body Text",
-      "default": "Sculpted tailoring, fluid silk slip silhouettes, and organic virgin wool coats crafted for the modern muse."
-    },
-    {
-      "type": "text",
-      "id": "button_label_1",
-      "label": "Primary Button Label",
-      "default": "Shop New Arrivals"
-    },
-    {
-      "type": "url",
-      "id": "button_link_1",
-      "label": "Primary Button Link"
-    },
-    {
-      "type": "text",
-      "id": "button_label_2",
-      "label": "Secondary Button Label",
-      "default": "View Lookbook"
-    },
-    {
-      "type": "url",
-      "id": "button_link_2",
-      "label": "Secondary Button Link"
     }
   ],
   "presets": [

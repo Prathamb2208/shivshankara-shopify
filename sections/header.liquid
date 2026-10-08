@@ -18,9 +18,9 @@
           {{ link.title }}
         </a>
       {%- else -%}
-        <a href="/collections/new-in" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">New In</a>
-        <a href="/collections/dresses" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Dresses</a>
-        <a href="/collections/outerwear" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Outerwear</a>
+        <a href="/collections/kurtis" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Kurtis & Kurtas</a>
+        <a href="/collections/co-ord-sets" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Co-ord Sets</a>
+        <a href="/collections/ethnic-sets" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Ethnic Sets</a>
       {%- endfor -%}
     </nav>
 
@@ -36,11 +36,12 @@
             height="40"
           >
         {%- else -%}
-          <span class="font-serif text-2xl lg:text-3xl tracking-[0.2em] font-light uppercase text-[var(--color-text)]">
-            {{ section.settings.brand_name | default: 'AURELIA' }}
+          <span class="site-logo-script block font-['Great_Vibes',cursive] text-2xl lg:text-3xl tracking-wide text-[#C5A059] leading-tight" style="font-family: 'Great Vibes', cursive; background: linear-gradient(135deg, #ead09d, #c5a059, #907030); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            {{ section.settings.brand_name | default: 'ShivShankara' }}
           </span>
-          <span class="block text-[8px] tracking-[0.35em] uppercase text-muted -mt-1 font-sans">
-            STUDIOS &bull; PARIS
+          <span class="block w-28 h-[1px] mx-auto my-0.5 bg-gradient-to-r from-transparent via-[#C5A059] to-transparent"></span>
+          <span class="block text-[8px] tracking-[0.35em] uppercase text-[#C5A059] font-medium font-sans">
+            {{ section.settings.sub_tagline | default: 'CLOTHING • JAIPUR' }}
           </span>
         {%- endif -%}
       </a>
@@ -54,9 +55,9 @@
             {{ link.title }}
           </a>
         {%- else -%}
-          <a href="/collections/knitwear" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Knitwear</a>
-          <a href="/pages/lookbook" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Lookbook</a>
-          <a href="/collections/sale" class="nav-link relative py-2 text-[var(--color-sale)] transition-colors hover:opacity-80">Sale</a>
+          <a href="/collections/dresses" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Dresses</a>
+          <a href="/collections/new-in" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">New In</a>
+          <a href="/pages/lookbook" class="nav-link relative py-2 text-[var(--color-accent)] transition-colors hover:opacity-80">Lookbook</a>
         {%- endfor -%}
       </nav>
 
@@ -95,27 +96,29 @@
     <div class="mobile-nav-content w-[85%] max-w-sm h-full bg-[var(--color-bg)] flex flex-col justify-between p-6 -translate-x-full transition-transform duration-300 shadow-2xl">
       <div>
         <div class="flex items-center justify-between pb-6 border-b border-[var(--color-border)]">
-          <span class="font-serif text-xl tracking-[0.2em] uppercase font-light">AURELIA</span>
+          <div>
+            <span class="font-['Great_Vibes',cursive] text-2xl text-[#C5A059] block" style="font-family: 'Great Vibes', cursive;">ShivShankara</span>
+            <span class="block text-[8px] tracking-[0.3em] uppercase text-[#C5A059]">CLOTHING &bull; JAIPUR</span>
+          </div>
           <button type="button" class="p-2 -mr-2" id="MobileNavClose" aria-label="Close menu">
             {% render 'icon-close' %}
           </button>
         </div>
 
         <nav class="flex flex-col gap-4 mt-6 text-sm uppercase tracking-widest font-medium">
-          <a href="/collections/new-in" class="py-2 border-b border-neutral-200/50">New In &bull; Drop 01</a>
-          <a href="/collections/dresses" class="py-2 border-b border-neutral-200/50">Dresses & Jumpsuits</a>
-          <a href="/collections/outerwear" class="py-2 border-b border-neutral-200/50">Coats & Blazers</a>
-          <a href="/collections/knitwear" class="py-2 border-b border-neutral-200/50">Cashmere & Knitwear</a>
-          <a href="/collections/sets" class="py-2 border-b border-neutral-200/50">Matching Sets</a>
-          <a href="/pages/lookbook" class="py-2 border-b border-neutral-200/50">Fall Lookbook</a>
-          <a href="/collections/sale" class="py-2 text-[var(--color-sale)]">Archive Sale</a>
+          <a href="/collections/kurtis" class="py-2 border-b border-neutral-200/50">Kurtis & Kurtas</a>
+          <a href="/collections/co-ord-sets" class="py-2 border-b border-neutral-200/50">Co-ord Sets</a>
+          <a href="/collections/ethnic-sets" class="py-2 border-b border-neutral-200/50">Ethnic Festive Sets</a>
+          <a href="/collections/dresses" class="py-2 border-b border-neutral-200/50">Linen & Cotton Dresses</a>
+          <a href="/collections/new-in" class="py-2 border-b border-neutral-200/50">New In &bull; Jaipur Drops</a>
+          <a href="/pages/lookbook" class="py-2 text-[var(--color-accent)]">#ShivShankara Lookbook</a>
         </nav>
       </div>
 
       <div class="pt-6 border-t border-[var(--color-border)] flex flex-col gap-3 text-xs text-muted">
-        <a href="/pages/about" class="hover:underline">About the Atelier</a>
-        <a href="/pages/sustainability" class="hover:underline">Sustainable Practices</a>
-        <a href="/pages/contact" class="hover:underline">Customer Concierge</a>
+        <a href="/pages/about" class="hover:underline">The Jaipur Artisan Story</a>
+        <a href="/pages/sizing" class="hover:underline">Concierge Sizing Guide</a>
+        <a href="/pages/contact" class="hover:underline">Customer Support Concierge</a>
       </div>
     </div>
   </div>
@@ -129,7 +132,13 @@
       "type": "text",
       "id": "brand_name",
       "label": "Brand Name",
-      "default": "AURELIA"
+      "default": "ShivShankara"
+    },
+    {
+      "type": "text",
+      "id": "sub_tagline",
+      "label": "Sub Tagline",
+      "default": "CLOTHING • JAIPUR"
     },
     {
       "type": "image_picker",
