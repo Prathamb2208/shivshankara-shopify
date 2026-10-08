@@ -36,8 +36,8 @@
 
         {%- for i in (1..section.settings.products_to_show) -%}
           {%- assign idx = forloop.index0 | modulo: 8 -%}
-          <div class="product-card group relative">
-            <div class="aspect-[3/4] bg-neutral-100 overflow-hidden rounded-xs relative">
+          <div class="product-card group relative flex flex-col h-full">
+            <div class="aspect-[3/4] bg-[#F7F5F0] overflow-hidden rounded-xs relative w-full" style="aspect-ratio: 3/4;">
               <img 
                 src="{{ sample_images[idx] }}" 
                 alt="{{ sample_titles[idx] }}" 
@@ -50,11 +50,11 @@
                 SAVE 70%+
               </span>
             </div>
-            <div class="pt-3">
-              <h3 class="font-['Outfit',sans-serif] text-sm font-medium text-[var(--color-text)] truncate group-hover:text-[#C5A059] transition-colors">
+            <div class="pt-3 flex flex-col flex-1 justify-between">
+              <h3 class="font-['Outfit',sans-serif] text-sm font-medium text-[var(--color-text)] line-clamp-2 min-h-[2.4rem] group-hover:text-[#C5A059] transition-colors">
                 {{ sample_titles[idx] }}
               </h3>
-              <div class="flex items-center gap-2 mt-1">
+              <div class="flex items-center gap-2 mt-auto pt-1">
                 <span class="text-sm font-semibold text-[var(--color-text)]">{{ sample_prices[idx] }}</span>
                 <span class="text-xs text-neutral-400 line-through">{{ sample_msrps[idx] }}</span>
               </div>

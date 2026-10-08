@@ -28,28 +28,139 @@
   width: 100%;
 }
 
-/* Product Cards */
-.product-card {
+/* ==========================================================================
+   Standardized Product Card & Uniform Grid System
+   ========================================================================== */
+.product-card,
+.card-wrapper,
+.grid__item .card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
   position: relative;
+  text-decoration: none;
 }
 
-.product-card__media-wrapper {
-  position: relative;
-  overflow: hidden;
-  background-color: #F4EFEA;
+/* Force standard 3:4 portrait aspect ratio on ALL product images across all cards */
+.product-card__media-wrapper,
+.product-card__link,
+.card__media,
+.card__inner,
+.media {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 3 / 4 !important;
+  overflow: hidden !important;
+  background-color: #F7F5F0 !important;
+  border-radius: 4px;
 }
 
-.product-card__image {
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+/* Ensure images always fill the container perfectly without stretching or distorted heights */
+.product-card__image,
+.product-card img,
+.card__media img,
+.media img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: top center !important; /* Preserves model head and neckline */
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
 }
 
-.product-card:hover .product-card__image--primary {
-  transform: scale(1.04);
+.product-card:hover .product-card__image--primary,
+.card:hover img {
+  transform: scale(1.05);
 }
 
 .product-card:hover .product-card__image--secondary {
-  opacity: 1;
-  transform: scale(1.04);
+  opacity: 1 !important;
+  transform: scale(1.05);
+}
+
+/* Standardized Content Container below image */
+.product-card__content,
+.card__content,
+.card__information {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  flex-grow: 1 !important;
+  padding-top: 0.75rem !important;
+}
+
+/* Standardized Title with strict 2-line height clamping for uniform alignment */
+.product-card__title,
+.card__heading,
+.card__heading a {
+  font-family: var(--font-heading, 'Outfit', sans-serif) !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+  color: var(--color-text, #121210) !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  min-height: 2.4rem !important; /* Standardizes 2-line title baseline */
+  max-height: 2.4rem !important;
+  margin: 0 0 0.35rem 0 !important;
+}
+
+/* Standardized Price Baseline Alignment */
+.product-card__price-row,
+.price-container,
+.price {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  margin-top: auto !important; /* Pushes price to the exact bottom baseline */
+}
+
+.price__sale,
+.product-card__price {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  color: var(--color-text, #121210) !important;
+}
+
+.price-item--compare,
+.price__compare {
+  font-size: 0.8rem !important;
+  color: var(--color-muted, #6E6A63) !important;
+  text-decoration: line-through !important;
+  font-weight: 400 !important;
+}
+
+.price--on-sale .price__regular {
+  display: none !important;
+}
+
+/* Sale Badge standardization */
+.product-card__badges,
+.card__badge {
+  position: absolute !important;
+  top: 0.625rem !important;
+  left: 0.625rem !important;
+  z-index: 10 !important;
+}
+
+.badge--sale,
+.badge {
+  display: inline-block !important;
+  background-color: var(--color-sale, #B84A39) !important;
+  color: #FFFFFF !important;
+  font-size: 0.65rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  padding: 0.2rem 0.55rem !important;
+  border-radius: 2px !important;
 }
 
 /* Swatches */

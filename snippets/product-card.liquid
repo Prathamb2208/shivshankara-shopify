@@ -8,14 +8,14 @@
   - section_id: {String}
 {% endcomment %}
 
-<div class="product-card" data-product-id="{{ product.id }}">
-  <div class="product-card__media-wrapper relative overflow-hidden group">
-    <a href="{{ product.url }}" class="product-card__link block relative aspect-[3/4] bg-neutral-100">
+<div class="product-card flex flex-col h-full" data-product-id="{{ product.id }}">
+  <div class="product-card__media-wrapper relative overflow-hidden group w-full" style="aspect-ratio: 3/4;">
+    <a href="{{ product.url }}" class="product-card__link block relative w-full h-full bg-[#F7F5F0]" style="aspect-ratio: 3/4;">
       {%- if product.featured_media -%}
         <img
           src="{{ product.featured_media | image_url: width: 600 }}"
           alt="{{ product.featured_media.alt | escape }}"
-          class="product-card__image product-card__image--primary object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105"
+          class="product-card__image product-card__image--primary w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
           loading="lazy"
           width="600"
           height="800"
@@ -24,7 +24,7 @@
           <img
             src="{{ product.media[1] | image_url: width: 600 }}"
             alt="{{ product.media[1].alt | escape }}"
-            class="product-card__image product-card__image--secondary object-cover w-full h-full absolute inset-0 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+            class="product-card__image product-card__image--secondary w-full h-full object-cover object-top absolute inset-0 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
             loading="lazy"
             width="600"
             height="800"
@@ -71,7 +71,7 @@
           </div>
         {% else %}
           <button 
-            type="button"
+            type="button" 
             class="btn-quick-add w-full py-2.5 px-4 bg-[var(--color-btn-bg)] text-[var(--color-btn-text)] text-xs tracking-widest uppercase font-medium hover:bg-black transition-colors duration-200 shadow-md"
             data-variant-id="{{ product.selected_or_first_available_variant.id }}"
           >
@@ -83,19 +83,22 @@
   </div>
 
   <!-- Content & Info -->
-  <div class="product-card__content pt-3 flex flex-col gap-1">
-    <div class="flex items-start justify-between gap-2">
-      <h3 class="product-card__title text-sm font-normal tracking-wide">
+  <div class="product-card__content pt-3 flex flex-col flex-1 justify-between gap-1">
+    <div>
+      <h3 class="product-card__title text-sm font-normal tracking-wide line-clamp-2 min-h-[2.4rem]">
         <a href="{{ product.url }}" class="hover:underline">
           {{ product.title }}
         </a>
       </h3>
-      {% render 'price', product: product, show_badges: false %}
+
+      {%- if product.metafields.custom.subtitle -%}
+        <p class="text-xs text-muted font-light truncate mt-0.5">{{ product.metafields.custom.subtitle }}</p>
+      {%- endif -%}
     </div>
 
-    {%- if product.metafields.custom.subtitle -%}
-      <p class="text-xs text-muted font-light">{{ product.metafields.custom.subtitle }}</p>
-    {%- endif -%}
+    <div class="product-card__price-row mt-auto pt-1 flex items-center justify-between">
+      {% render 'price', product: product, show_badges: false %}
+    </div>
 
     <!-- Visual Color Options -->
     {%- if settings.show_color_swatches -%}

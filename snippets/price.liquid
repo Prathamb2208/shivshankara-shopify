@@ -18,33 +18,34 @@
   assign money_price = price | money
 -%}
 
-<div class="price-container {% if compare_at_price > price %}price--on-sale{% endif %} {% unless available %}price--sold-out{% endunless %}">
-  <div class="price__regular">
-    <span class="visually-hidden">Regular price</span>
-    <span class="price-item price-item--regular">
-      {{ money_price }}
-    </span>
-  </div>
+<div class="price-container {% if compare_at_price > price %}price--on-sale{% endif %} {% unless available %}price--sold-out{% endunless %} flex items-center gap-2">
   {%- if compare_at_price > price -%}
-    <div class="price__sale">
+    <div class="price__sale flex items-center gap-2">
       <span class="visually-hidden">Sale price</span>
-      <span class="price-item price-item--sale">
+      <span class="price-item price-item--sale font-semibold text-sm text-[var(--color-text)]">
         {{ money_price }}
       </span>
       <span class="visually-hidden">Original price</span>
-      <s class="price-item price-item--compare">
+      <s class="price-item price-item--compare text-xs text-neutral-400 line-through">
         {{ compare_at_price | money }}
       </s>
+    </div>
+  {%- else -%}
+    <div class="price__regular">
+      <span class="visually-hidden">Regular price</span>
+      <span class="price-item price-item--regular font-semibold text-sm text-[var(--color-text)]">
+        {{ money_price }}
+      </span>
     </div>
   {%- endif -%}
 
   {%- if show_badges -%}
     {%- if compare_at_price > price -%}
-      <span class="badge badge--sale">
+      <span class="badge badge--sale text-[10px] uppercase font-semibold px-2 py-0.5 bg-[#B84A39] text-white rounded-xs">
         Sale
       </span>
     {%- elsif available == false -%}
-      <span class="badge badge--soldout">
+      <span class="badge badge--soldout text-[10px] uppercase font-semibold px-2 py-0.5 bg-neutral-400 text-white rounded-xs">
         Sold Out
       </span>
     {%- endif -%}

@@ -181,3 +181,31 @@ input, select, textarea {
   .lg\:col-span-6 { grid-column: span 6 / span 6; }
   .lg\:col-span-7 { grid-column: span 7 / span 7; }
 }
+
+/* Aspect ratio, Image fit & Line clamp utilities */
+.aspect-\[3\/4\], .aspect-3\/4, .aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+.object-top {
+  object-position: top center;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.min-h-\[2\.4rem\] {
+  min-height: 2.4rem;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
