@@ -1,3 +1,43 @@
+{%- liquid
+  if collections['kurtis'] != blank and collections['kurtis'].products_count > 0
+    assign url_kurtis = collections['kurtis'].url
+  elsif collections['kurtis-kurtas'] != blank and collections['kurtis-kurtas'].products_count > 0
+    assign url_kurtis = collections['kurtis-kurtas'].url
+  else
+    assign url_kurtis = '/collections/types?q=Kurtis+%26+Kurtas'
+  endif
+
+  if collections['co-ord-sets'] != blank and collections['co-ord-sets'].products_count > 0
+    assign url_coords = collections['co-ord-sets'].url
+  else
+    assign url_coords = '/collections/types?q=Co-ord+Sets'
+  endif
+
+  if collections['ethnic-sets'] != blank and collections['ethnic-sets'].products_count > 0
+    assign url_ethnic = collections['ethnic-sets'].url
+  else
+    assign url_ethnic = '/collections/types?q=Ethnic+Sets'
+  endif
+
+  if collections['dresses'] != blank and collections['dresses'].products_count > 0
+    assign url_dresses = collections['dresses'].url
+  else
+    assign url_dresses = '/collections/types?q=Dresses'
+  endif
+
+  if collections['new-in'] != blank and collections['new-in'].products_count > 0
+    assign url_new_in = collections['new-in'].url
+  else
+    assign url_new_in = '/collections/all?sort_by=created-descending'
+  endif
+
+  if pages['lookbook'] != blank
+    assign url_lookbook = pages['lookbook'].url
+  else
+    assign url_lookbook = '/#lookbook'
+  endif
+-%}
+
 <header class="site-header sticky top-0 z-40 bg-[var(--color-bg)]/95 backdrop-blur-md border-b border-[var(--color-border)] transition-all duration-300" id="SiteHeader">
   <div class="site-header__wrapper container mx-auto px-4 lg:px-8 h-20 flex items-center justify-between">
     
@@ -14,9 +54,9 @@
     <!-- Desktop Navigation Left Links -->
     <nav class="hidden lg:flex items-center gap-7 text-xs uppercase tracking-widest font-medium text-[var(--color-text)]">
       {%- if section.settings.use_brand_menu or section.settings.menu.links.size == 0 -%}
-        <a href="/collections/kurtis" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Kurtis &amp; Kurtas</a>
-        <a href="/collections/co-ord-sets" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Co-ord Sets</a>
-        <a href="/collections/ethnic-sets" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Ethnic Sets</a>
+        <a href="{{ url_kurtis }}" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Kurtis &amp; Kurtas</a>
+        <a href="{{ url_coords }}" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Co-ord Sets</a>
+        <a href="{{ url_ethnic }}" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Ethnic Sets</a>
       {%- else -%}
         {%- assign half_count = section.settings.menu.links.size | divided_by: 2 | at_least: 1 -%}
         {%- for link in section.settings.menu.links limit: half_count -%}
@@ -54,9 +94,9 @@
     <div class="header__right flex items-center justify-end gap-6">
       <nav class="hidden lg:flex items-center gap-7 text-xs uppercase tracking-widest font-medium text-[var(--color-text)] mr-2">
         {%- if section.settings.use_brand_menu or section.settings.menu.links.size == 0 -%}
-          <a href="/collections/dresses" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Dresses</a>
-          <a href="/collections/new-in" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">New In</a>
-          <a href="/pages/lookbook" class="nav-link relative py-2 text-[var(--color-accent)] transition-colors hover:opacity-80">Lookbook</a>
+          <a href="{{ url_dresses }}" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Dresses</a>
+          <a href="{{ url_new_in }}" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">New In</a>
+          <a href="{{ url_lookbook }}" class="nav-link relative py-2 text-[var(--color-accent)] transition-colors hover:opacity-80">Lookbook</a>
         {%- else -%}
           {%- assign half_count = section.settings.menu.links.size | divided_by: 2 | at_least: 1 -%}
           {%- for link in section.settings.menu.links offset: half_count -%}
@@ -112,12 +152,12 @@
         </div>
 
         <nav class="flex flex-col gap-4 mt-6 text-sm uppercase tracking-widest font-medium">
-          <a href="/collections/kurtis" class="py-2 border-b border-neutral-200/50">Kurtis & Kurtas</a>
-          <a href="/collections/co-ord-sets" class="py-2 border-b border-neutral-200/50">Co-ord Sets</a>
-          <a href="/collections/ethnic-sets" class="py-2 border-b border-neutral-200/50">Ethnic Festive Sets</a>
-          <a href="/collections/dresses" class="py-2 border-b border-neutral-200/50">Linen & Cotton Dresses</a>
-          <a href="/collections/new-in" class="py-2 border-b border-neutral-200/50">New In &bull; Jaipur Drops</a>
-          <a href="/pages/lookbook" class="py-2 text-[var(--color-accent)]">#ShivShankara Lookbook</a>
+          <a href="{{ url_kurtis }}" class="py-2 border-b border-neutral-200/50">Kurtis &amp; Kurtas</a>
+          <a href="{{ url_coords }}" class="py-2 border-b border-neutral-200/50">Co-ord Sets</a>
+          <a href="{{ url_ethnic }}" class="py-2 border-b border-neutral-200/50">Ethnic Festive Sets</a>
+          <a href="{{ url_dresses }}" class="py-2 border-b border-neutral-200/50">Linen &amp; Cotton Dresses</a>
+          <a href="{{ url_new_in }}" class="py-2 border-b border-neutral-200/50">New In &bull; Jaipur Drops</a>
+          <a href="{{ url_lookbook }}" class="py-2 text-[var(--color-accent)]">#ShivShankara Lookbook</a>
         </nav>
       </div>
 

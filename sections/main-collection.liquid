@@ -1,11 +1,39 @@
+{%- liquid
+  if collections['kurtis'] != blank and collections['kurtis'].products_count > 0
+    assign url_kurtis = collections['kurtis'].url
+  elsif collections['kurtis-kurtas'] != blank and collections['kurtis-kurtas'].products_count > 0
+    assign url_kurtis = collections['kurtis-kurtas'].url
+  else
+    assign url_kurtis = '/collections/types?q=Kurtis+%26+Kurtas'
+  endif
+
+  if collections['co-ord-sets'] != blank and collections['co-ord-sets'].products_count > 0
+    assign url_coords = collections['co-ord-sets'].url
+  else
+    assign url_coords = '/collections/types?q=Co-ord+Sets'
+  endif
+
+  if collections['ethnic-sets'] != blank and collections['ethnic-sets'].products_count > 0
+    assign url_ethnic = collections['ethnic-sets'].url
+  else
+    assign url_ethnic = '/collections/types?q=Ethnic+Sets'
+  endif
+
+  if collections['dresses'] != blank and collections['dresses'].products_count > 0
+    assign url_dresses = collections['dresses'].url
+  else
+    assign url_dresses = '/collections/types?q=Dresses'
+  endif
+-%}
+
 <section class="main-collection-section py-10 lg:py-16 bg-[var(--color-bg)]">
   <div class="container mx-auto px-4 lg:px-8">
     
     <!-- Collection Header -->
-    <div class="collection-header text-center max-w-2xl mx-auto mb-12">
-      <span class="text-xs uppercase tracking-[0.25em] text-muted font-medium block mb-2">Collection</span>
-      <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight mb-4">
-        {{ collection.title | default: 'Dresses & Evening Silks' }}
+    <div class="collection-header text-center max-w-2xl mx-auto mb-10">
+      <span class="text-xs uppercase tracking-[0.25em] text-[#C5A059] font-semibold block mb-2">ShivShankara &bull; Handcrafted Jaipur</span>
+      <h1 class="font-['Outfit',sans-serif] text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--color-text)] mb-3">
+        {{ collection.title | default: 'All Artisan Creations' }}
       </h1>
       {%- if collection.description != blank -%}
         <div class="text-xs sm:text-sm text-muted font-light leading-relaxed">
@@ -13,66 +41,69 @@
         </div>
       {%- else -%}
         <p class="text-xs sm:text-sm text-muted font-light leading-relaxed">
-          From bias-cut silk slip dresses to structured cocktail wear, discover silhouettes designed to effortlessly elevate every occasion.
+          Discover our signature Jaipur hand-block printed apparel, breathable pure cottons, and flattering silhouettes handcrafted with mindful heritage artisanship.
         </p>
       {%- endif -%}
     </div>
 
     <!-- Filter & Sort Bar -->
     <div class="filter-bar py-4 border-y border-[var(--color-border)] mb-10 flex flex-wrap items-center justify-between gap-4 text-xs">
-      <div class="flex items-center gap-6">
-        <span class="text-muted tracking-wider uppercase font-medium">
-          {{ collection.products_count | default: 8 }} Pieces
+      <div class="flex items-center gap-3 flex-wrap">
+        <span class="text-muted tracking-wider uppercase font-medium mr-1">
+          {{ collection.products_count }} {{ collection.products_count | pluralize: 'Piece', 'Pieces' }}
         </span>
 
-        <!-- Filter Tags -->
-        <div class="hidden sm:flex items-center gap-2">
-          <button type="button" class="px-3 py-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-black transition-colors font-medium">All Silhouettes</button>
-          <button type="button" class="px-3 py-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-black transition-colors">Silk</button>
-          <button type="button" class="px-3 py-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-black transition-colors">Linen</button>
-          <button type="button" class="px-3 py-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-black transition-colors">Wool</button>
-        </div>
+        <!-- Quick Department Links -->
+        <a href="/collections/all" class="px-3.5 py-1.5 rounded-full border border-[var(--color-border)] text-xs font-medium transition-colors {% if collection.handle == 'all' or collection.title == 'Products' or collection.title == 'All Products' %}bg-[#121210] text-white border-[#121210]{% else %}bg-white text-[var(--color-text)] hover:border-black{% endif %}">
+          All Pieces
+        </a>
+        <a href="{{ url_kurtis }}" class="px-3.5 py-1.5 rounded-full border border-[var(--color-border)] text-xs font-medium transition-colors {% if collection.title contains 'Kurti' or collection.title contains 'Kurta' or current_tags contains 'Kurtis' %}bg-[#121210] text-white border-[#121210]{% else %}bg-white text-[var(--color-text)] hover:border-black{% endif %}">
+          Kurtis &amp; Kurtas
+        </a>
+        <a href="{{ url_coords }}" class="px-3.5 py-1.5 rounded-full border border-[var(--color-border)] text-xs font-medium transition-colors {% if collection.title contains 'Co-ord' or collection.title contains 'Coord' %}bg-[#121210] text-white border-[#121210]{% else %}bg-white text-[var(--color-text)] hover:border-black{% endif %}">
+          Co-ord Sets
+        </a>
+        <a href="{{ url_ethnic }}" class="px-3.5 py-1.5 rounded-full border border-[var(--color-border)] text-xs font-medium transition-colors {% if collection.title contains 'Ethnic' %}bg-[#121210] text-white border-[#121210]{% else %}bg-white text-[var(--color-text)] hover:border-black{% endif %}">
+          Ethnic Sets
+        </a>
+        <a href="{{ url_dresses }}" class="px-3.5 py-1.5 rounded-full border border-[var(--color-border)] text-xs font-medium transition-colors {% if collection.title contains 'Dress' %}bg-[#121210] text-white border-[#121210]{% else %}bg-white text-[var(--color-text)] hover:border-black{% endif %}">
+          Dresses
+        </a>
       </div>
 
-      <div class="flex items-center gap-4 ml-auto">
-        <!-- Sort Select -->
-        <div class="flex items-center gap-2">
-          <label for="SortBy" class="text-muted uppercase tracking-wider text-[11px] font-medium">Sort:</label>
-          <select id="SortBy" class="bg-transparent border-none text-xs font-medium focus:outline-none cursor-pointer">
-            <option value="manual">Featured</option>
-            <option value="price-ascending">Price: Low to High</option>
-            <option value="price-descending">Price: High to Low</option>
-            <option value="created-descending">Newest Releases</option>
-          </select>
-        </div>
+      <div class="flex items-center gap-3 ml-auto">
+        <label for="SortBy" class="text-muted uppercase tracking-wider text-[11px] font-medium">Sort:</label>
+        <select id="SortBy" class="bg-white border border-[var(--color-border)] rounded px-2.5 py-1.5 text-xs font-medium focus:outline-none cursor-pointer">
+          <option value="manual" {% if collection.sort_by == 'manual' %}selected{% endif %}>Featured</option>
+          <option value="price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>Price: Low to High</option>
+          <option value="price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>Price: High to Low</option>
+          <option value="created-descending" {% if collection.sort_by == 'created-descending' %}selected{% endif %}>Newest Releases</option>
+        </select>
       </div>
     </div>
 
     <!-- Products Grid -->
     {%- paginate collection.products by section.settings.products_per_page -%}
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 lg:gap-x-6 lg:gap-y-14">
-        {%- if collection.products.size > 0 -%}
+      {%- if collection.products.size > 0 -%}
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 lg:gap-x-6 lg:gap-y-14">
           {%- for product in collection.products -%}
             {% render 'product-card', product: product, show_secondary_image: true %}
           {%- endfor -%}
-        {%- else -%}
-          <!-- Mock preview cards if empty -->
-          {%- for i in (1..8) -%}
-            <div class="product-card">
-              <div class="aspect-[3/4] bg-neutral-200 flex items-center justify-center text-muted text-xs uppercase tracking-wider">
-                Piece {{ i }}
-              </div>
-              <div class="pt-3">
-                <h3 class="text-sm font-normal">Aurelia Seasonal Piece {{ i }}</h3>
-                <div class="text-xs text-muted mt-1">$210.00</div>
-              </div>
-            </div>
-          {%- endfor -%}
-        {%- endif -%}
-      </div>
+        </div>
+      {%- else -%}
+        <!-- Empty collection state -->
+        <div class="py-16 text-center max-w-md mx-auto bg-white rounded border border-[var(--color-border)] p-8 shadow-xs">
+          <span class="text-3xl mb-3 block">🌿</span>
+          <h3 class="font-['Outfit',sans-serif] text-lg font-semibold text-[var(--color-text)] mb-2">No Products Currently in this Selection</h3>
+          <p class="text-xs text-muted mb-6">Our artisans in Jaipur are continually crafting new additions. Explore our complete collection or other departments.</p>
+          <a href="/collections/all" class="inline-block px-6 py-3 bg-[#121210] hover:bg-[#C5A059] text-white text-xs uppercase tracking-widest font-semibold transition-colors">
+            View All ShivShankara Pieces &rarr;
+          </a>
+        </div>
+      {%- endif -%}
 
       {%- if paginate.pages > 1 -%}
-        <div class="pagination-wrapper text-center pt-16">
+        <div class="pagination-wrapper text-center pt-16 flex justify-center gap-2">
           {{ paginate | default_pagination }}
         </div>
       {%- endif -%}
@@ -80,6 +111,14 @@
 
   </div>
 </section>
+
+<script>
+  document.getElementById('SortBy')?.addEventListener('change', function() {
+    const url = new URL(window.location.href);
+    url.searchParams.set('sort_by', this.value);
+    window.location.href = url.href;
+  });
+</script>
 
 {% schema %}
 {

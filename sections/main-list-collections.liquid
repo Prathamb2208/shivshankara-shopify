@@ -1,23 +1,99 @@
-<section class="list-collections-section py-16 bg-[var(--color-bg)]">
+{%- liquid
+  if collections['kurtis'] != blank and collections['kurtis'].products_count > 0
+    assign url_kurtis = collections['kurtis'].url
+  elsif collections['kurtis-kurtas'] != blank and collections['kurtis-kurtas'].products_count > 0
+    assign url_kurtis = collections['kurtis-kurtas'].url
+  else
+    assign url_kurtis = '/collections/types?q=Kurtis+%26+Kurtas'
+  endif
+
+  if collections['co-ord-sets'] != blank and collections['co-ord-sets'].products_count > 0
+    assign url_coords = collections['co-ord-sets'].url
+  else
+    assign url_coords = '/collections/types?q=Co-ord+Sets'
+  endif
+
+  if collections['ethnic-sets'] != blank and collections['ethnic-sets'].products_count > 0
+    assign url_ethnic = collections['ethnic-sets'].url
+  else
+    assign url_ethnic = '/collections/types?q=Ethnic+Sets'
+  endif
+
+  if collections['dresses'] != blank and collections['dresses'].products_count > 0
+    assign url_dresses = collections['dresses'].url
+  else
+    assign url_dresses = '/collections/types?q=Dresses'
+  endif
+-%}
+
+<section class="list-collections-section py-16 lg:py-24 bg-[var(--color-bg)]">
   <div class="container mx-auto px-4 lg:px-8">
     <div class="text-center max-w-xl mx-auto mb-12">
-      <span class="text-xs uppercase tracking-[0.25em] text-muted font-medium block mb-2">The Directory</span>
-      <h1 class="font-serif text-3xl sm:text-4xl font-normal">All Collections</h1>
+      <span class="text-xs uppercase tracking-[0.25em] text-[#C5A059] font-semibold block mb-2">Curated Catalog</span>
+      <h1 class="font-['Outfit',sans-serif] text-3xl sm:text-4xl font-bold text-[var(--color-text)]">All Collections</h1>
     </div>
 
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-      {%- for collection in collections -%}
-        <div class="collection-item group relative aspect-[4/5] bg-neutral-100 overflow-hidden rounded">
-          <a href="{{ collection.url }}" class="block w-full h-full">
-            {%- if collection.featured_image -%}
-              <img src="{{ collection.featured_image | image_url: width: 600 }}" alt="{{ collection.title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-            {%- endif -%}
-            <div class="absolute inset-0 bg-black/40 flex items-center justify-center p-4 text-center text-white">
-              <h3 class="font-serif text-2xl font-light">{{ collection.title }}</h3>
+      {%- if collections.size > 0 -%}
+        {%- for collection in collections -%}
+          <div class="collection-item group relative aspect-[4/5] bg-neutral-100 overflow-hidden rounded-xs shadow-xs">
+            <a href="{{ collection.url }}" class="block w-full h-full">
+              {%- if collection.featured_image -%}
+                <img src="{{ collection.featured_image | image_url: width: 600 }}" alt="{{ collection.title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+              {%- else -%}
+                <div class="w-full h-full bg-[#F4EFEA] flex items-center justify-center">
+                  <span class="text-2xl font-serif text-[#C5A059]">&#10022;</span>
+                </div>
+              {%- endif -%}
+              <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-5 text-center text-white">
+                <h3 class="font-['Outfit',sans-serif] text-lg font-semibold tracking-wide">{{ collection.title }}</h3>
+                <span class="text-[10px] uppercase tracking-widest text-[#ead09d] mt-1 font-medium">Explore &rarr;</span>
+              </div>
+            </a>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Curated fallback cards when merchant has not created custom collection objects yet -->
+        <div class="collection-item group relative aspect-[4/5] bg-neutral-100 overflow-hidden rounded-xs shadow-xs">
+          <a href="{{ url_kurtis }}" class="block w-full h-full">
+            <img src="https://kjmjeoaipojzyrxshvzo.supabase.co/storage/v1/object/public/product-images/SD1025_KB/SD1025_KB_1.jpg" alt="Kurtis & Kurtas" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-5 text-center text-white">
+              <h3 class="font-['Outfit',sans-serif] text-lg font-semibold tracking-wide">Kurtas &amp; Kurtis</h3>
+              <span class="text-[10px] uppercase tracking-widest text-[#ead09d] mt-1 font-medium">Explore &rarr;</span>
             </div>
           </a>
         </div>
-      {%- endfor -%}
+
+        <div class="collection-item group relative aspect-[4/5] bg-neutral-100 overflow-hidden rounded-xs shadow-xs">
+          <a href="{{ url_coords }}" class="block w-full h-full">
+            <img src="https://kjmjeoaipojzyrxshvzo.supabase.co/storage/v1/object/public/product-images/SD836_S/SD836_S_1.jpg" alt="Co-ord Sets" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-5 text-center text-white">
+              <h3 class="font-['Outfit',sans-serif] text-lg font-semibold tracking-wide">Co-ord Sets</h3>
+              <span class="text-[10px] uppercase tracking-widest text-[#ead09d] mt-1 font-medium">Explore &rarr;</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="collection-item group relative aspect-[4/5] bg-neutral-100 overflow-hidden rounded-xs shadow-xs">
+          <a href="{{ url_ethnic }}" class="block w-full h-full">
+            <img src="https://kjmjeoaipojzyrxshvzo.supabase.co/storage/v1/object/public/product-images/SD687_KBD/SD687_KBD_1.jpg" alt="Ethnic Sets" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-5 text-center text-white">
+              <h3 class="font-['Outfit',sans-serif] text-lg font-semibold tracking-wide">Ethnic Festive Sets</h3>
+              <span class="text-[10px] uppercase tracking-widest text-[#ead09d] mt-1 font-medium">Explore &rarr;</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="collection-item group relative aspect-[4/5] bg-neutral-100 overflow-hidden rounded-xs shadow-xs">
+          <a href="{{ url_dresses }}" class="block w-full h-full">
+            <img src="https://kjmjeoaipojzyrxshvzo.supabase.co/storage/v1/object/public/product-images/SD800_KB/SD800_KB_1.jpg" alt="Dresses" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-5 text-center text-white">
+              <h3 class="font-['Outfit',sans-serif] text-lg font-semibold tracking-wide">Linen &amp; Cotton Dresses</h3>
+              <span class="text-[10px] uppercase tracking-widest text-[#ead09d] mt-1 font-medium">Explore &rarr;</span>
+            </div>
+          </a>
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </section>

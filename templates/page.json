@@ -1,23 +1,20 @@
 {
   "sections": {
-    "page_content": {
-      "type": "image-with-text",
-      "settings": {
-        "subheading": "The Atelier",
-        "title": "A Commitment to Timeless Craft",
-        "layout": "image_first"
-      }
+    "main_page": {
+      "type": "main-page",
+      "settings": {}
     },
     "newsletter": {
       "type": "newsletter",
       "settings": {
-        "subheading": "Private Invitations",
-        "title": "Subscribe for Salon Updates"
+        "subheading": "ShivShankara Jaipur",
+        "title": "Receive Jaipur Drop Notifications",
+        "text": "Sign up to be the first to know when authentic artisan capsules and limited editions are released."
       }
     }
   },
   "order": [
-    "page_content",
+    "main_page",
     "newsletter"
   ]
 }

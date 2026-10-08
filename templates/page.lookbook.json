@@ -1,0 +1,65 @@
+{
+  "sections": {
+    "lookbook": {
+      "type": "lookbook-shop-the-look",
+      "blocks": {
+        "pin_1": {
+          "type": "hotspot",
+          "settings": {
+            "custom_title": "Indigo Hand-Block Anarkali Kurta",
+            "pin_x": 48,
+            "pin_y": 30
+          }
+        },
+        "pin_2": {
+          "type": "hotspot",
+          "settings": {
+            "custom_title": "Handcrafted Jaipur Co-ord Set",
+            "pin_x": 52,
+            "pin_y": 55
+          }
+        },
+        "pin_3": {
+          "type": "hotspot",
+          "settings": {
+            "custom_title": "Pure Cotton Dupatta",
+            "pin_x": 35,
+            "pin_y": 68
+          }
+        }
+      },
+      "block_order": [
+        "pin_1",
+        "pin_2",
+        "pin_3"
+      ],
+      "settings": {
+        "subheading": "#ShivShankara Community Lookbook",
+        "heading": "The Art of Rajasthani Drape & Block Print",
+        "text": "Explore how our patrons style effortless pure cotton ensembles from daytime coffee dates to celebratory festive evenings."
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "subheading": "Featured In Lookbook",
+        "title": "Shop The Jaipur Season Edit",
+        "products_to_show": 8,
+        "view_all_label": "View Complete Collection"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "subheading": "Join the Circle",
+        "title": "Receive Jaipur Drop Notifications",
+        "text": "Sign up to be the first to know when limited-edition handcrafted capsules are released."
+      }
+    }
+  },
+  "order": [
+    "lookbook",
+    "featured_collection",
+    "newsletter"
+  ]
+}

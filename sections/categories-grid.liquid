@@ -1,16 +1,66 @@
+{%- liquid
+  if collections['kurtis'] != blank and collections['kurtis'].products_count > 0
+    assign url_kurtis = collections['kurtis'].url
+  elsif collections['kurtis-kurtas'] != blank and collections['kurtis-kurtas'].products_count > 0
+    assign url_kurtis = collections['kurtis-kurtas'].url
+  else
+    assign url_kurtis = '/collections/types?q=Kurtis+%26+Kurtas'
+  endif
+
+  if collections['co-ord-sets'] != blank and collections['co-ord-sets'].products_count > 0
+    assign url_coords = collections['co-ord-sets'].url
+  else
+    assign url_coords = '/collections/types?q=Co-ord+Sets'
+  endif
+
+  if collections['ethnic-sets'] != blank and collections['ethnic-sets'].products_count > 0
+    assign url_ethnic = collections['ethnic-sets'].url
+  else
+    assign url_ethnic = '/collections/types?q=Ethnic+Sets'
+  endif
+
+  if collections['dresses'] != blank and collections['dresses'].products_count > 0
+    assign url_dresses = collections['dresses'].url
+  else
+    assign url_dresses = '/collections/types?q=Dresses'
+  endif
+-%}
+
 <section class="categories-grid-section py-16 lg:py-24 bg-[var(--color-bg)]">
   <div class="container mx-auto px-4 lg:px-8">
     <div class="section-header text-center mb-12">
       {%- if section.settings.subheading != blank -%}
-        <span class="text-xs uppercase tracking-[0.25em] text-muted font-medium block mb-2">{{ section.settings.subheading }}</span>
+        <span class="text-xs uppercase tracking-[0.25em] text-[#C5A059] font-medium block mb-2">{{ section.settings.subheading }}</span>
       {%- endif -%}
-      <h2 class="font-serif text-3xl lg:text-4xl font-normal tracking-tight">{{ section.settings.title }}</h2>
+      <h2 class="font-['Outfit',sans-serif] text-3xl lg:text-4xl font-bold tracking-tight text-[var(--color-text)]">{{ section.settings.title }}</h2>
     </div>
 
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
       {%- for block in section.blocks -%}
-        <div class="category-card group relative aspect-[4/5] overflow-hidden bg-neutral-100" {{ block.shopify_attributes }}>
-          <a href="{{ block.settings.link }}" class="block w-full h-full">
+        {%- assign target_link = block.settings.link -%}
+        {%- if target_link == blank or target_link == '/collections/kurtis' and collections['kurtis'] == blank -%}
+          {% case forloop.index0 %}
+            {% when 0 %}
+              {% assign target_link = url_kurtis %}
+            {% when 1 %}
+              {% assign target_link = url_coords %}
+            {% when 2 %}
+              {% assign target_link = url_ethnic %}
+            {% when 3 %}
+              {% assign target_link = url_dresses %}
+            {% else %}
+              {% assign target_link = '/collections/all' %}
+          {% endcase %}
+        {%- elsif target_link == '/collections/co-ord-sets' and collections['co-ord-sets'] == blank -%}
+          {% assign target_link = url_coords %}
+        {%- elsif target_link == '/collections/ethnic-sets' and collections['ethnic-sets'] == blank -%}
+          {% assign target_link = url_ethnic %}
+        {%- elsif target_link == '/collections/dresses' and collections['dresses'] == blank -%}
+          {% assign target_link = url_dresses %}
+        {%- endif -%}
+
+        <div class="category-card group relative aspect-[4/5] overflow-hidden bg-neutral-100 rounded-sm" {{ block.shopify_attributes }}>
+          <a href="{{ target_link }}" class="block w-full h-full">
             {%- if block.settings.image != blank -%}
               <img 
                 src="{{ block.settings.image | image_url: width: 600 }}" 

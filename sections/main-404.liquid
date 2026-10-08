@@ -1,19 +1,50 @@
 <section class="main-404-section py-20 lg:py-32 bg-[var(--color-bg)] text-center">
-  <div class="container mx-auto px-4 max-w-xl">
+  <div class="container mx-auto px-4 max-w-2xl">
     <span class="text-xs uppercase tracking-[0.3em] text-[#C5A059] font-semibold block mb-3">404 &bull; Page Not Found</span>
-    <h1 class="font-heading text-4xl sm:text-5xl font-bold mb-4 text-[var(--color-text)]">
+    <h1 class="font-['Outfit',sans-serif] text-4xl sm:text-5xl font-bold mb-4 text-[var(--color-text)]">
       {{ section.settings.title | default: 'The Piece You Seek Has Departed' }}
     </h1>
-    <p class="text-sm text-muted mb-8 leading-relaxed">
-      {{ section.settings.text | default: 'The page, collection, or design you are looking for is no longer here or has moved to our latest catalog.' }}
+    <p class="text-sm text-muted mb-8 max-w-lg mx-auto leading-relaxed">
+      {{ section.settings.text | default: 'The page, collection, or design you are looking for has moved to our newest Jaipur catalog or is undergoing handcrafted updates.' }}
     </p>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="/" class="w-full sm:w-auto px-8 py-3.5 bg-[#121210] hover:bg-[#C5A059] text-white text-xs uppercase tracking-widest font-semibold rounded-xs transition-colors shadow-md">
-        Return to Storefront &rarr;
+    <!-- Instant Search Box -->
+    <form action="/search" method="get" class="max-w-md mx-auto mb-10">
+      <div class="flex items-center border-b-2 border-[#C5A059] pb-2">
+        <input 
+          type="search" 
+          name="q" 
+          placeholder="Search kurtis, co-ords, leheriya, anarkali..." 
+          class="w-full bg-transparent text-sm focus:outline-none placeholder:text-neutral-400"
+        >
+        <button type="submit" class="text-xs uppercase tracking-widest font-semibold ml-3 px-4 py-2 bg-[#121210] hover:bg-[#C5A059] text-white transition-colors rounded-xs">
+          Search
+        </button>
+      </div>
+    </form>
+
+    <!-- Quick Category Destination Buttons -->
+    <div class="flex flex-wrap items-center justify-center gap-3 mb-10">
+      <a href="/collections/all" class="px-5 py-2.5 bg-[#121210] hover:bg-[#C5A059] text-white text-xs uppercase tracking-widest font-semibold rounded-xs transition-colors shadow-sm">
+        Explore All Products &rarr;
       </a>
-      <a href="/collections/all" class="w-full sm:w-auto px-8 py-3.5 border border-[#121210] text-[#121210] hover:bg-[#121210] hover:text-white text-xs uppercase tracking-widest font-medium rounded-xs transition-colors">
-        Explore Collection
+      <a href="/collections/types?q=Kurtis+%26+Kurtas" class="px-4 py-2 bg-white border border-[var(--color-border)] hover:border-black text-xs font-medium rounded-full transition-colors">
+        Kurtis &amp; Kurtas
+      </a>
+      <a href="/collections/types?q=Co-ord+Sets" class="px-4 py-2 bg-white border border-[var(--color-border)] hover:border-black text-xs font-medium rounded-full transition-colors">
+        Co-ord Sets
+      </a>
+      <a href="/collections/types?q=Ethnic+Sets" class="px-4 py-2 bg-white border border-[var(--color-border)] hover:border-black text-xs font-medium rounded-full transition-colors">
+        Ethnic Sets
+      </a>
+      <a href="/collections/types?q=Dresses" class="px-4 py-2 bg-white border border-[var(--color-border)] hover:border-black text-xs font-medium rounded-full transition-colors">
+        Dresses
+      </a>
+    </div>
+
+    <div>
+      <a href="/" class="text-xs uppercase tracking-widest text-muted hover:text-[var(--color-text)] underline font-medium">
+        &larr; Return to ShivShankara Homepage
       </a>
     </div>
   </div>
@@ -33,7 +64,12 @@
       "type": "textarea",
       "id": "text",
       "label": "Description",
-      "default": "The page, collection, or design you are looking for is no longer here or has moved to our latest catalog."
+      "default": "The page, collection, or design you are looking for has moved to our newest Jaipur catalog or is undergoing handcrafted updates."
+    }
+  ],
+  "presets": [
+    {
+      "name": "404 Page"
     }
   ]
 }

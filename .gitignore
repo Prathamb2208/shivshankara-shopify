@@ -12,6 +12,7 @@ npm-debug.log*
 
 # Local images dump
 extracted_product_images/
+photos_dump/
 test_supabase_live.js
 
 # Local environment / IDE

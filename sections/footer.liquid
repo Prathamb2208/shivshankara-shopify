@@ -1,3 +1,43 @@
+{%- liquid
+  if collections['kurtis'] != blank and collections['kurtis'].products_count > 0
+    assign url_kurtis = collections['kurtis'].url
+  elsif collections['kurtis-kurtas'] != blank and collections['kurtis-kurtas'].products_count > 0
+    assign url_kurtis = collections['kurtis-kurtas'].url
+  else
+    assign url_kurtis = '/collections/types?q=Kurtis+%26+Kurtas'
+  endif
+
+  if collections['co-ord-sets'] != blank and collections['co-ord-sets'].products_count > 0
+    assign url_coords = collections['co-ord-sets'].url
+  else
+    assign url_coords = '/collections/types?q=Co-ord+Sets'
+  endif
+
+  if collections['ethnic-sets'] != blank and collections['ethnic-sets'].products_count > 0
+    assign url_ethnic = collections['ethnic-sets'].url
+  else
+    assign url_ethnic = '/collections/types?q=Ethnic+Sets'
+  endif
+
+  if collections['dresses'] != blank and collections['dresses'].products_count > 0
+    assign url_dresses = collections['dresses'].url
+  else
+    assign url_dresses = '/collections/types?q=Dresses'
+  endif
+
+  if collections['new-in'] != blank and collections['new-in'].products_count > 0
+    assign url_new_in = collections['new-in'].url
+  else
+    assign url_new_in = '/collections/all?sort_by=created-descending'
+  endif
+
+  if pages['lookbook'] != blank
+    assign url_lookbook = pages['lookbook'].url
+  else
+    assign url_lookbook = '/#lookbook'
+  endif
+-%}
+
 <footer class="site-footer bg-[#121210] text-[#E8E2D9] pt-16 pb-12 border-t border-neutral-800">
   <div class="container mx-auto px-4 lg:px-8">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12 pb-16 border-b border-neutral-800/80">
@@ -39,12 +79,12 @@
       <div>
         <h4 class="text-xs uppercase tracking-[0.2em] font-medium text-white mb-4">The Collections</h4>
         <ul class="flex flex-col gap-2.5 text-xs text-neutral-400 font-light">
-          <li><a href="/collections/kurtis" class="hover:text-[#C5A059] transition-colors">Kurtas & Kurtis</a></li>
-          <li><a href="/collections/co-ord-sets" class="hover:text-[#C5A059] transition-colors">Co-ord Sets</a></li>
-          <li><a href="/collections/ethnic-sets" class="hover:text-[#C5A059] transition-colors">Ethnic Festive Sets</a></li>
-          <li><a href="/collections/dresses" class="hover:text-[#C5A059] transition-colors">Linen & Cotton Dresses</a></li>
-          <li><a href="/collections/new-in" class="hover:text-[#C5A059] transition-colors">New In: Jaipur Drops</a></li>
-          <li><a href="/pages/lookbook" class="hover:text-[#C5A059] transition-colors text-[#C5A059]">#ShivShankara Lookbook</a></li>
+          <li><a href="{{ url_kurtis }}" class="hover:text-[#C5A059] transition-colors">Kurtas &amp; Kurtis</a></li>
+          <li><a href="{{ url_coords }}" class="hover:text-[#C5A059] transition-colors">Co-ord Sets</a></li>
+          <li><a href="{{ url_ethnic }}" class="hover:text-[#C5A059] transition-colors">Ethnic Festive Sets</a></li>
+          <li><a href="{{ url_dresses }}" class="hover:text-[#C5A059] transition-colors">Linen &amp; Cotton Dresses</a></li>
+          <li><a href="{{ url_new_in }}" class="hover:text-[#C5A059] transition-colors">New In: Jaipur Drops</a></li>
+          <li><a href="{{ url_lookbook }}" class="hover:text-[#C5A059] transition-colors text-[#C5A059]">#ShivShankara Lookbook</a></li>
         </ul>
       </div>
 
