@@ -46,6 +46,35 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
 
+    <!-- Tailwind CSS Engine & Brand Tokens -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              heading: ['"Outfit"', 'sans-serif'],
+              body: ['"Inter"', 'sans-serif'],
+              script: ['"Great Vibes"', 'cursive'],
+              serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+              sans: ['"Inter"', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                bg: '{{ settings.color_background | default: "#FBF9F5" }}',
+                surface: '{{ settings.color_surface | default: "#FFFFFF" }}',
+                dark: '{{ settings.color_text | default: "#121210" }}',
+                muted: '{{ settings.color_muted_text | default: "#706B65" }}',
+                border: '{{ settings.color_border | default: "#E8E2D9" }}',
+                accent: '{{ settings.color_accent | default: "#C5A059" }}',
+                sale: '{{ settings.color_sale_badge | default: "#B84A39" }}',
+              }
+            }
+          }
+        }
+      }
+    </script>
+
     {{ content_for_header }}
   </head>
 

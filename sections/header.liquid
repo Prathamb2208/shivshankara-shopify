@@ -13,15 +13,18 @@
 
     <!-- Desktop Navigation Left Links -->
     <nav class="hidden lg:flex items-center gap-7 text-xs uppercase tracking-widest font-medium text-[var(--color-text)]">
-      {%- for link in section.settings.menu.links limit: 3 -%}
-        <a href="{{ link.url }}" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)] {% if link.active %}active{% endif %}">
-          {{ link.title }}
-        </a>
-      {%- else -%}
-        <a href="/collections/kurtis" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Kurtis & Kurtas</a>
+      {%- if section.settings.use_brand_menu or section.settings.menu.links.size == 0 -%}
+        <a href="/collections/kurtis" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Kurtis &amp; Kurtas</a>
         <a href="/collections/co-ord-sets" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Co-ord Sets</a>
         <a href="/collections/ethnic-sets" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Ethnic Sets</a>
-      {%- endfor -%}
+      {%- else -%}
+        {%- assign half_count = section.settings.menu.links.size | divided_by: 2 | at_least: 1 -%}
+        {%- for link in section.settings.menu.links limit: half_count -%}
+          <a href="{{ link.url }}" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)] {% if link.active %}active{% endif %}">
+            {{ link.title }}
+          </a>
+        {%- endfor -%}
+      {%- endif -%}
     </nav>
 
     <!-- Brand Logo / Wordmark -->
@@ -50,15 +53,18 @@
     <!-- Desktop Navigation Right Links & Actions -->
     <div class="header__right flex items-center justify-end gap-6">
       <nav class="hidden lg:flex items-center gap-7 text-xs uppercase tracking-widest font-medium text-[var(--color-text)] mr-2">
-        {%- for link in section.settings.menu.links offset: 3 -%}
-          <a href="{{ link.url }}" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)] {% if link.active %}active{% endif %}">
-            {{ link.title }}
-          </a>
-        {%- else -%}
+        {%- if section.settings.use_brand_menu or section.settings.menu.links.size == 0 -%}
           <a href="/collections/dresses" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">Dresses</a>
           <a href="/collections/new-in" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)]">New In</a>
           <a href="/pages/lookbook" class="nav-link relative py-2 text-[var(--color-accent)] transition-colors hover:opacity-80">Lookbook</a>
-        {%- endfor -%}
+        {%- else -%}
+          {%- assign half_count = section.settings.menu.links.size | divided_by: 2 | at_least: 1 -%}
+          {%- for link in section.settings.menu.links offset: half_count -%}
+            <a href="{{ link.url }}" class="nav-link relative py-2 transition-colors hover:text-[var(--color-accent)] {% if link.active %}active{% endif %}">
+              {{ link.title }}
+            </a>
+          {%- endfor -%}
+        {%- endif -%}
       </nav>
 
       <!-- Desktop Search -->
@@ -146,9 +152,15 @@
       "label": "Logo Image"
     },
     {
+      "type": "checkbox",
+      "id": "use_brand_menu",
+      "label": "Use ShivShankara Apparel Menu (Kurtis, Co-ords, Sets, Dresses)",
+      "default": true
+    },
+    {
       "type": "link_list",
       "id": "menu",
-      "label": "Menu",
+      "label": "Custom Menu (Used when checkbox above is off)",
       "default": "main-menu"
     }
   ]

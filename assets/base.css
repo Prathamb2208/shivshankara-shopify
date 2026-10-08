@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AURELIA STUDIOS - Base CSS Reset & Typography
+   ShivShankara Clothing - Base CSS Reset & Layout System
    ========================================================================== */
 
 *, *::before, *::after {
@@ -17,26 +17,40 @@ html {
 
 body {
   background-color: var(--color-bg, #FBF9F5);
-  color: var(--color-text, #171513);
-  font-family: var(--font-sans, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  color: var(--color-text, #121210);
+  font-family: var(--font-body, 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 /* Typography Utility Classes */
+.font-script {
+  font-family: var(--font-script, 'Great Vibes', cursive) !important;
+}
+
+.font-heading {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+}
+
 .font-serif {
   font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
 }
 
-.font-sans {
-  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+.font-sans, .font-body {
+  font-family: var(--font-body, 'Inter', sans-serif);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
-  font-weight: 400;
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-weight: 600;
   line-height: 1.2;
-  color: var(--color-text, #171513);
+  color: var(--color-text, #121210);
 }
 
 a {
@@ -62,11 +76,21 @@ input, select, textarea {
   font-size: 100%;
 }
 
+/* Core Container & Layout Utilities */
 .container {
   width: 100%;
   max-width: var(--container-max, 1380px);
   margin-left: auto;
   margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 .visually-hidden {
@@ -82,9 +106,78 @@ input, select, textarea {
 }
 
 .text-muted {
-  color: var(--color-muted, #706B65);
+  color: var(--color-muted, #6E6A63);
 }
 
 .border-subtle {
-  border-color: var(--color-border, #E8E2D9);
+  border-color: var(--color-border, #E6DFD3);
+}
+
+/* Fallback Flexbox & Grid Core Classes */
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.flex-1 { flex: 1 1 0%; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+.inset-0 { inset: 0; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.overflow-hidden { overflow: hidden; }
+
+.grid { display: grid; }
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+.gap-10 { gap: 2.5rem; }
+.gap-12 { gap: 3rem; }
+
+.hidden { display: none; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+
+@media (min-width: 640px) {
+  .sm\:flex-row { flex-direction: row; }
+  .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 768px) {
+  .md\:flex { display: flex; }
+  .md\:hidden { display: none !important; }
+  .md\:block { display: block; }
+  .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .lg\:flex { display: flex !important; }
+  .lg\:hidden { display: none !important; }
+  .lg\:block { display: block; }
+  .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .lg\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .lg\:grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .lg\:col-span-2 { grid-column: span 2 / span 2; }
+  .lg\:col-span-5 { grid-column: span 5 / span 5; }
+  .lg\:col-span-6 { grid-column: span 6 / span 6; }
+  .lg\:col-span-7 { grid-column: span 7 / span 7; }
 }
