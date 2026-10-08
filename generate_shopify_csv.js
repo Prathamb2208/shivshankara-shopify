@@ -151,7 +151,7 @@ async function generateShopifyCsv() {
         'TRUE',                                                  // Variant Requires Shipping
         'TRUE',                                                  // Variant Taxable
         '',                                                      // Variant Barcode
-        img || '',                                               // Image Src
+        img ? (img.startsWith('http') ? img : 'https://shivshankara-storefront.vercel.app' + (img.startsWith('/') ? img : '/' + img)) : '', // Image Src
         img ? (i + 1) : '',                                      // Image Position
         img ? `${prod.name} - View ${i + 1}` : '',               // Image Alt Text
         isFirst ? 'FALSE' : '',                                  // Gift Card
